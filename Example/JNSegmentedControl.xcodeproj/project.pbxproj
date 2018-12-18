@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F53048021B09B9B00B9B123 /* JNSegmentedControlTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53047D21B09B9B00B9B123 /* JNSegmentedControlTableViewController.swift */; };
+		1F53048121B09B9B00B9B123 /* JNSegmentedControlViewControTableViewlDelegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53047E21B09B9B00B9B123 /* JNSegmentedControlViewControTableViewlDelegate+DataSource.swift */; };
+		1F53048221B09B9B00B9B123 /* JNSegmentedControlDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F53047F21B09B9B00B9B123 /* JNSegmentedControlDetailViewController.swift */; };
+		2BD3C880E45262D5291C3AB0 /* Pods_JNSegmentedControl_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56A835C88D7E07D4B42A50D /* Pods_JNSegmentedControl_Tests.framework */; };
+		38E8A5D14E8B6EB310208935 /* Pods_JNSegmentedControl_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F19403AB8B73A799A83387D /* Pods_JNSegmentedControl_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		A6B67E2415DF8B73578EA18E /* Pods_JNSegmentedControl_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E5A8E38E690F4C4FD0CF46 /* Pods_JNSegmentedControl_Tests.framework */; };
-		E04D358987354DA9FAD53CCD /* Pods_JNSegmentedControl_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE369889FDFF941EAF7A91D9 /* Pods_JNSegmentedControl_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,25 +30,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26E5A8E38E690F4C4FD0CF46 /* Pods_JNSegmentedControl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JNSegmentedControl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B137BCA449E988668F803ED /* JNSegmentedControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = JNSegmentedControl.podspec; path = ../JNSegmentedControl.podspec; sourceTree = "<group>"; };
+		1F53047D21B09B9B00B9B123 /* JNSegmentedControlTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JNSegmentedControlTableViewController.swift; sourceTree = "<group>"; };
+		1F53047E21B09B9B00B9B123 /* JNSegmentedControlViewControTableViewlDelegate+DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JNSegmentedControlViewControTableViewlDelegate+DataSource.swift"; sourceTree = "<group>"; };
+		1F53047F21B09B9B00B9B123 /* JNSegmentedControlDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JNSegmentedControlDetailViewController.swift; sourceTree = "<group>"; };
+		5B137BCA449E988668F803ED /* JNSegmentedControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JNSegmentedControl.podspec; path = ../JNSegmentedControl.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* JNSegmentedControl_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JNSegmentedControl_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* JNSegmentedControl_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JNSegmentedControl_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		7F19403AB8B73A799A83387D /* Pods_JNSegmentedControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JNSegmentedControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93FB00CAC70AD58110EC22C9 /* Pods-JNSegmentedControl_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JNSegmentedControl_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JNSegmentedControl_Tests/Pods-JNSegmentedControl_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		A69FEB1EFCC359661788BC98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		B5693A377256645576236EC4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A69FEB1EFCC359661788BC98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B5693A377256645576236EC4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BB8EB8640F2769B42F71130C /* Pods-JNSegmentedControl_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JNSegmentedControl_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JNSegmentedControl_Example/Pods-JNSegmentedControl_Example.release.xcconfig"; sourceTree = "<group>"; };
+		C56A835C88D7E07D4B42A50D /* Pods_JNSegmentedControl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JNSegmentedControl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4A71E5C0361D3D616FE8DF /* Pods-JNSegmentedControl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JNSegmentedControl_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JNSegmentedControl_Tests/Pods-JNSegmentedControl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FBA2772096C22285A7AB0121 /* Pods-JNSegmentedControl_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JNSegmentedControl_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JNSegmentedControl_Example/Pods-JNSegmentedControl_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FE369889FDFF941EAF7A91D9 /* Pods_JNSegmentedControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JNSegmentedControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E04D358987354DA9FAD53CCD /* Pods_JNSegmentedControl_Example.framework in Frameworks */,
+				38E8A5D14E8B6EB310208935 /* Pods_JNSegmentedControl_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,18 +66,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6B67E2415DF8B73578EA18E /* Pods_JNSegmentedControl_Tests.framework in Frameworks */,
+				2BD3C880E45262D5291C3AB0 /* Pods_JNSegmentedControl_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FC63FB021C689F80034B36D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F53047E21B09B9B00B9B123 /* JNSegmentedControlViewControTableViewlDelegate+DataSource.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		1FC63FB221C68B010034B36D /* JNSegmentedControlTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F53047D21B09B9B00B9B123 /* JNSegmentedControlTableViewController.swift */,
+				1FC63FB021C689F80034B36D /* Extensions */,
+			);
+			name = JNSegmentedControlTableViewController;
+			sourceTree = "<group>";
+		};
+		1FC63FB321C68B0B0034B36D /* JNSegmentedControlDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F53047F21B09B9B00B9B123 /* JNSegmentedControlDetailViewController.swift */,
+			);
+			name = JNSegmentedControlDetailViewController;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				607FACD21AFB9204008FA782 /* Example for JNSegmentedControl */,
+				607FACD21AFB9204008FA782 /* Example */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				A71302C2C1B26117DD2BB5D5 /* Pods */,
@@ -90,17 +119,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607FACD21AFB9204008FA782 /* Example for JNSegmentedControl */ = {
+		607FACD21AFB9204008FA782 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				1FC63FB221C68B010034B36D /* JNSegmentedControlTableViewController */,
+				1FC63FB321C68B0B0034B36D /* JNSegmentedControlDetailViewController */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = "Example for JNSegmentedControl";
+			name = Example;
 			path = JNSegmentedControl;
 			sourceTree = "<group>";
 		};
@@ -153,8 +183,8 @@
 		D754A7F2751205489FBFC324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FE369889FDFF941EAF7A91D9 /* Pods_JNSegmentedControl_Example.framework */,
-				26E5A8E38E690F4C4FD0CF46 /* Pods_JNSegmentedControl_Tests.framework */,
+				7F19403AB8B73A799A83387D /* Pods_JNSegmentedControl_Example.framework */,
+				C56A835C88D7E07D4B42A50D /* Pods_JNSegmentedControl_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,15 +237,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 243T5L9MQG;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 243T5L9MQG;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -334,7 +366,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1F53048121B09B9B00B9B123 /* JNSegmentedControlViewControTableViewlDelegate+DataSource.swift in Sources */,
+				1F53048221B09B9B00B9B123 /* JNSegmentedControlDetailViewController.swift in Sources */,
+				1F53048021B09B9B00B9B123 /* JNSegmentedControlTableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,12 +423,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -422,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -442,12 +478,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -468,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -481,7 +519,9 @@
 			baseConfigurationReference = FBA2772096C22285A7AB0121 /* Pods-JNSegmentedControl_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 243T5L9MQG;
 				INFOPLIST_FILE = JNSegmentedControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -496,7 +536,9 @@
 			baseConfigurationReference = BB8EB8640F2769B42F71130C /* Pods-JNSegmentedControl_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 243T5L9MQG;
 				INFOPLIST_FILE = JNSegmentedControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -510,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE4A71E5C0361D3D616FE8DF /* Pods-JNSegmentedControl_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 243T5L9MQG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -532,6 +575,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93FB00CAC70AD58110EC22C9 /* Pods-JNSegmentedControl_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 243T5L9MQG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
