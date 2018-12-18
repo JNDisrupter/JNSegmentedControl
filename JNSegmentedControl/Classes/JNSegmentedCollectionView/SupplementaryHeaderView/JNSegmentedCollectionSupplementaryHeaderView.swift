@@ -55,7 +55,7 @@ public class JNSegmentedCollectionSupplementaryHeaderView: UICollectionReusableV
      */
     class func registerSupplementaryHeaderView(collectionView:UICollectionView) {
         
-     collectionView.register(JNSegmentedCollectionSupplementaryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: JNSegmentedCollectionSupplementaryHeaderView.getReuseIdentifier())
+        collectionView.register(JNSegmentedCollectionSupplementaryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: JNSegmentedCollectionSupplementaryHeaderView.getReuseIdentifier())
     }
 }
 

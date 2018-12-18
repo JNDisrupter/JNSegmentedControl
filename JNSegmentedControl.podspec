@@ -9,7 +9,7 @@ s.license      = { :type => 'MIT', :file => 'LICENSE' }
 s.authors      = { "Jayel Zaghmoutt" => "eng.jayel.z@gmail.com", "Mohammad Nabulsi" => "mohammad.s.nabulsi@gmail.com", "Mohammad Ihmouda" => "mkihmouda@gmail.com" }
 s.platform     = :ios
 s.platform     = :ios, "9.0"
-s.source       = { :path => '.' }
+s.source       = { :git => "https://github.com/JNDisrupter/JNSegmentedControl.git", :tag => "#{s.version}" }
 s.source_files = "JNSegmentedControl/**/*.{swift}"
 s.resources    = "JNSegmentedControl/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 s.swift_version = "4.2"

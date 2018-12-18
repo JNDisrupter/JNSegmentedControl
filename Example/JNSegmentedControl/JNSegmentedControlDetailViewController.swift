@@ -35,10 +35,10 @@ class JNSegmentedControlDetailViewController: UIViewController {
     var selectedAttributedStringItems: [NSAttributedString] = []
     
     // default attributes
-    var defaultAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black]
+    var defaultAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]
     
     // selected attributes
-    var selectedAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0))]
+    var selectedAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0))]
     
     override func viewDidLoad() {
         super.viewDidLoad()
