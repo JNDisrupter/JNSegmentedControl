@@ -172,7 +172,7 @@
         <!--Segmented Control Detail View Controller-->
         <scene sceneID="tqP-OM-Yw1">
             <objects>
-                <viewController id="mAQ-xY-SJ3" customClass="JNSegmentedControlDetailViewController" customModule="JNSegmentedControl_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mAQ-xY-SJ3" customClass="JNSegmentedControlDetailViewController" customModule="JNSegmentedControl_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qkd-1K-U72"/>
                         <viewControllerLayoutGuide type="bottom" id="PMA-WK-gXp"/>
@@ -197,10 +197,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Piu-6E-liQ" firstAttribute="top" secondItem="qkd-1K-U72" secondAttribute="bottom" id="7wV-Ic-v6m"/>
                             <constraint firstItem="OSt-0G-fi6" firstAttribute="centerX" secondItem="KrM-lX-e00" secondAttribute="centerX" id="Fli-eu-C4O"/>
                             <constraint firstItem="OSt-0G-fi6" firstAttribute="centerY" secondItem="KrM-lX-e00" secondAttribute="centerY" id="XPV-Fp-Tnq"/>
                             <constraint firstAttribute="trailing" secondItem="Piu-6E-liQ" secondAttribute="trailing" id="ZHQ-pn-k3O"/>
-                            <constraint firstItem="Piu-6E-liQ" firstAttribute="top" secondItem="qkd-1K-U72" secondAttribute="bottom" id="g9F-rU-ect"/>
                             <constraint firstItem="Piu-6E-liQ" firstAttribute="leading" secondItem="KrM-lX-e00" secondAttribute="leading" id="h9S-VD-93b"/>
                         </constraints>
                     </view>
