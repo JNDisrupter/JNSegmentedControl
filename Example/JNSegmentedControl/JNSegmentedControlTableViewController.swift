@@ -2,8 +2,8 @@
 //  JNSegmentedControlTableViewController.swift
 //  JNSegmentedControl
 //
-//  Created by ihmouda on 11/29/2018.
-//  Copyright (c) 2018 ihmouda. All rights reserved.
+//  Created by JNDisrupter on 11/29/2018.
+//  Copyright (c) 2018 JNDisrupter. All rights reserved.
 //
 
 import UIKit

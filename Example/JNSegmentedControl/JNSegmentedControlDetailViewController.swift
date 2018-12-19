@@ -1,9 +1,9 @@
 //
 //  JNSegmentedControlDetailViewController.swift
-//  JNSegmentedControl_Example
+//  JNSegmentedControl
 //
 //  Created by JNDisrupter on 11/29/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 JNDisrupter. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class JNSegmentedControlDetailViewController: UIViewController {
     var segmentedStyle: JNSegmentedControlStyle = JNSegmentedControlStyle.textOnly
 
     /// Text Array
-    let textArray = ["Area Chart", "Bar Chart", "Line Chart", "Pie Chart", "Area Chart"]
+    let textArray = ["Area Chart" , "Bar Chart" , "Line Chart", "Pie Chart", "Area Chart"]
     
     /// Image Array
     let imageArray = ["AreaChart", "BarChart", "LineChart", "PieChart", "AreaChart"]
@@ -59,7 +59,7 @@ class JNSegmentedControlDetailViewController: UIViewController {
         
         // listen to changing the status
         self.segmentedControlView.valueDidChange = { segmentIndex in
-            self.selectedSegmentedStyle.text = "\(segmentIndex + 1)"
+            self.selectedSegmentedStyle.text = "\(segmentIndex)"
         }
     }
     
@@ -83,10 +83,10 @@ class JNSegmentedControlDetailViewController: UIViewController {
         }
         
         // define vertical separator options
-        let verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions(heigthRatio: 0.3, width: 1.0 ,color: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0)))
+        let verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions(heigthRatio: 0.6, width: 1.0 ,color: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0)))
         
         // define options
-        let options = JNSegmentedCollectionOptions(backgroundColor: .clear, position: JNSegmentedCollectionLayoutType.dynamic, verticalSeparatorOptions: verticalSeparatorOptions, scrollEnabled: true)
+        let options = JNSegmentedCollectionOptions(backgroundColor: .clear, layoutType: JNSegmentedCollectionLayoutType.dynamic, verticalSeparatorOptions: verticalSeparatorOptions, scrollEnabled: true)
         
         // setup collection view
         self.segmentedControlView.setup(items: self.attributedStringItems, selectedItems: self.selectedAttributedStringItems, options: options)

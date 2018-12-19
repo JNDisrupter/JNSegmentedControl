@@ -22,10 +22,10 @@ public enum JNSegemntedControlColor: String {
     }
 }
 
-/// JNSegmentedCollectionItemVerticalSeparatorOptions
+/// JNSegmented Collection Item Vertical Separator Options
 public struct JNSegmentedCollectionItemVerticalSeparatorOptions {
     
-    /// Height Ratio
+    /// Height Ratio accroding to collection view height, max value is 1 and min is 0
     var heigthRatio: CGFloat
     
     /// Vertical Seperator Width
@@ -37,9 +37,21 @@ public struct JNSegmentedCollectionItemVerticalSeparatorOptions {
     /**
      Initializer
      */
-    public init(heigthRatio: CGFloat = 1, width: CGFloat = 100, color: UIColor = JNSegemntedControlColor.blue.getColor(alpha: 1.0)) {
-        self.heigthRatio = heigthRatio
+    public init(heigthRatio: CGFloat = 1.0, width: CGFloat = 1.0, color: UIColor = JNSegemntedControlColor.blue.getColor(alpha: 1.0)) {
+        
+        // Set Height Ratio
+        if heigthRatio < 0.0 {
+            self.heigthRatio = 0.0
+        }else if heigthRatio > 1.0 {
+          self.heigthRatio = 1.0
+        }else{
+            self.heigthRatio = heigthRatio
+        }
+        
+        // Set Width
         self.width = width
+        
+        // Set Color
         self.color = color
     }
 }
@@ -86,9 +98,9 @@ public struct JNSegmentedCollectionOptions {
     /**
      Initializer
      */
-    public init(backgroundColor: UIColor, position: JNSegmentedCollectionLayoutType, verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil, scrollEnabled: Bool = true, contentItemLayoutMargins: CGFloat = 30.0 ) {
+    public init(backgroundColor: UIColor, layoutType: JNSegmentedCollectionLayoutType, verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil, scrollEnabled: Bool = true, contentItemLayoutMargins: CGFloat = 30.0 ) {
         
-        self.layoutType = position
+        self.layoutType = layoutType
         self.backgroundColor = backgroundColor
         self.verticalSeparatorOptions = verticalSeparatorOptions
         self.isScrollEnabled = scrollEnabled

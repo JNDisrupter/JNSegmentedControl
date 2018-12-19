@@ -18,21 +18,21 @@ public class JNSegmentedCollectionView: UIView {
     var options = JNSegmentedCollectionOptions()
     
     /// Segmented Items
-    var segmentedItems = [JNSegmentedControlCollectionViewCellRepresentable]()
+    var segmentedItems: [JNSegmentedControlCollectionViewCellRepresentable] = []
     
     /// Selected Segmented Items
-    var selectedSegmentedItems = [JNSegmentedControlCollectionViewCellRepresentable]()
+    var selectedSegmentedItems: [JNSegmentedControlCollectionViewCellRepresentable] = []
     
     /// Items
-    var items = [NSAttributedString]()
+    var items: [NSAttributedString] = []
     
     /// Selected Items
-    var selectedItems = [NSAttributedString]()
+    var selectedItems: [NSAttributedString] = []
     
     /// Value Did Change
     public var valueDidChange: ((_ index: Int) -> Void)?
     
-    /// Is zoom enabled
+    /// Selected Index
     public var selectedIndex: Int = 0 {
         didSet {
             
@@ -96,7 +96,7 @@ public class JNSegmentedCollectionView: UIView {
         layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        
+
         // Init collection view
         self.collectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         
@@ -144,6 +144,9 @@ public class JNSegmentedCollectionView: UIView {
         // set selected items
         self.selectedItems = selectedItems
         
+        // Update Layout
+        self.layoutIfNeeded()
+        
         // build representables
         self.buildRepresentables()
         
@@ -159,6 +162,33 @@ public class JNSegmentedCollectionView: UIView {
         // remove all items
         self.segmentedItems.removeAll()
         self.selectedSegmentedItems.removeAll()
+        
+        // Cell Size
+        var cellSize: CGSize = CGSize.zero
+        
+        // Selected Cell Size
+        var selectedCellSize: CGSize = CGSize.zero
+        
+        // Calculate cell size For Fixed Layout Type
+        if case let JNSegmentedCollectionLayoutType.fixed(maxVisibleItems) = self.options.layoutType {
+            let cellWidthForFixedLayoutType = self.getCellWidthForFixedLayoutType(maxVisibleItems: maxVisibleItems)
+            
+            // Update
+            cellSize = CGSize(width: cellWidthForFixedLayoutType, height: self.frame.height)
+            
+            // Update
+            selectedCellSize = cellSize
+        }
+
+
+        // Total Cells Width
+        var totalCellsWidth: CGFloat = 0.0
+        
+        // Item Layout Margin
+        let itemLayoutMargin = self.options.contentItemLayoutMargins * 2.0
+        
+        // Separator Width
+        let separatorWidth = self.options.verticalSeparatorOptions?.width ?? 1.0
         
         // convert string attributed strings to array of representables
         for index in 0 ..< self.items.count {
@@ -187,11 +217,49 @@ public class JNSegmentedCollectionView: UIView {
                 selectedAttrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSRange(location: 0, length: selectedAttrString.length))
             }
             
+            
+            
+            if case JNSegmentedCollectionLayoutType.dynamic = self.options.layoutType {
+                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.items[index], collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                
+                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.selectedItems[index], collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                
+                // Update Total Cells Width
+                totalCellsWidth += cellWidth
+                
+                // Add Separator width
+                if index > 0 {
+                   totalCellsWidth += separatorWidth
+                }
+                
+                // Update Cell Size
+                cellSize = CGSize(width: cellWidth, height: (self.collectionView?.frame.height ?? 0.0))
+                selectedCellSize = CGSize(width: selectedCellWidth, height: (self.collectionView?.frame.height ?? 0.0))
+            }
+
+            
             // add representables
-            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, collectionViewSize: self.collectionView?.frame.size ?? CGSize.zero))
+            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize))
             
             // add selected representables
-            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, collectionViewSize: self.collectionView?.frame.size ?? CGSize.zero))
+            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize))
+        }
+        
+        // Collection width
+        let collectionWidth = self.frame.size.width
+        
+        // Check in case of Dynamic mode and total cells width is less than collection view width
+        if totalCellsWidth > 0.0 &&  totalCellsWidth < collectionWidth  {
+            let newMargin = ((collectionWidth - totalCellsWidth) / CGFloat(self.segmentedItems.count))
+            
+            // Update cell size
+            for item in self.segmentedItems {
+                var cellSize = item.cellSize
+                cellSize.width += newMargin
+                
+                // Update Represenatble
+                item.updateCellSize(cellSize)
+            }
         }
     }
     
