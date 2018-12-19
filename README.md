@@ -12,16 +12,17 @@
 
 ## Preview
 
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl1.gif" width="280"/>  
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl2.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl3.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl4.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/>
 
 ## Requirements:
 
 - Xcode 9
-- iOS 8.x+
-- Swift 4.0+
+- iOS 9.0+
+- Swift 4.2+
 
 
 ## Installation
