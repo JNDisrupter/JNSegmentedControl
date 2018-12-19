@@ -115,11 +115,11 @@ import JNSegmentedControl
     ```
 
 - ***JNSegmented Collection Layout Type:***
-
-The Segmented Control has two types of layout for items:
-
-        - **Dynamic:** The width of each item will be according to its content.
-        - **Fixed:** The width of each item will be fixed according to max  visible Items.
+    
+    The Segmented Control has two types of layout for items:
+  
+     - **Dynamic:** The width of each item will be according to its content.
+     - **Fixed:** The width of each item will be fixed according to max  visible Items.
     
     ```swift
         enum  JNSegmentedCollectionLayoutType {
@@ -129,7 +129,7 @@ The Segmented Control has two types of layout for items:
     ```
 - ***JNSegmented Vertical Separator Options:***
 
-The Segmented Control has the ability to show separator line between items, that has the following settings:
+    The Segmented Control has the ability to show separator line between items, that has the following settings:
 
     -  **HeigthRatio:**  Separator view height Ratio accroding to collection view height, max value is 1 and min is 0.
     -  **Width:** Separator view width.
