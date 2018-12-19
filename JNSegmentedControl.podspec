@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "JNSegmentedControl"
-s.version      = "1.0.0"
+s.version      = "1.0.1"
 s.summary      = "JNSegmentedControl is animated segmented control for iOS applications."
 s.description  = "JNSegmentedControl is an easy to use, animated segmented control for iOS written in Swift. JNSegmentedControl supports 3 main styles of segments."
 s.homepage     = "https://github.com/JNDisrupter"
