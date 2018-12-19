@@ -38,63 +38,65 @@ import JNSegmentedControl
 ```
 
 - **Initalization:**
-- **Storyboard:**
-Manually, you can add a UIView instance to your Xib, set **'JNSegmentedControl'** class and connect @IBOutlet reference.
+    - ***Storyboard:***
+    Manually, you can add a UIView instance to your Xib, set **'JNSegmentedControl'** class and connect @IBOutlet reference.
 
-- **Programmatically:**
-Init ‘JNSegmentedControl’ UIView instance programatically.
+    - ***Programmatically:***
+    Init ‘JNSegmentedControl’ UIView instance programatically.
 
-```swift
-let segmentedControlView = JNSegmentedCollectionView()
-self.view.addSubview(segmentedControlView)
-```
+    ```swift
+        let segmentedControlView = JNSegmentedCollectionView()
+        self.view.addSubview(segmentedControlView)
+    ```
 
 -  **Setup:**
-- **JNSegmentedControl Setup:**
+    - ***JNSegmentedControl Setup:***
 
-```swift
-self.segmentedControlView.setup(
-items: [NSAttributedString],
-selectedItems: [NSAttributedString],
-options: JNSegmentedCollectionOptions()
-)
-```
-To start with default options you can pass **(nil)** value to the options parameter.
+    ```swift
+        self.segmentedControlView.setup(
+            items: [NSAttributedString],
+            selectedItems: [NSAttributedString],
+            options: JNSegmentedCollectionOptions()
+        )
+    ```
+    
+    To start with default options you can pass **(nil)** value to the options parameter.
 
-```swift
-self.segmentedControlView.setup(
-items: [NSAttributedString],
-selectedItems: [NSAttributedString],
-options: nil
-)
-```
+    ```swift
+        self.segmentedControlView.setup(
+            items: [NSAttributedString],
+            selectedItems: [NSAttributedString],
+            options: nil
+        )
+    ```
 
-- **Configuring items:**
-The Segmented Control items & selected items are array of **NSAttributedString**. In order to set items you need to provide an instance of **[NSAttributedString]**.
+    - ***Configuring items:***
+    
+    The Segmented Control items & selected items are array of **NSAttributedString**. In order to set items you need to provide an instance of **[NSAttributedString]**.
 
-- ***Default Items:***
-```swift
-var items = [NSAttributedString]()
-let item  = NSAttributedString(string: “Default Item", attributes: [])
-items.append(item)
-```
+    - ***Default Items:***
+        ```swift
+                var items = [NSAttributedString]()
+                let item  = NSAttributedString(string: “Default Item", attributes: [])
+                items.append(item)
+        ```
 
-- ***Selected Items:***
-```swift
-var items = [NSAttributedString]()
-let item  = NSAttributedString(string: “Selected Item", attributes: [])
-items.append(item)
-```
+    - ***Selected Items:***
+        ```swift
+            var items = [NSAttributedString]()
+            let item  = NSAttributedString(string: “Selected Item", attributes: [])
+            items.append(item)
+        ```
 
 - **Handling callback:**
 
-```swift
-self.segmentedControlView.valueDidChange = { segment in
-print("Selected item: ", segment)
-}
-```
+    ```swift
+        self.segmentedControlView.valueDidChange = { segment in
+            print("Selected item: ", segment)
+        }
+    ```
 
-- ***Options Customization::***
+- **Options Customization:**
 
     - **backgroundColor**: Segmented control background color.
     - **layoutType**: case value from **JNSegmentedCollectionLayoutType** enumeration.
@@ -103,40 +105,42 @@ print("Selected item: ", segment)
     - **contentItemLayoutMargins**: Content item layout margins from Left and Right.
 
     ```swift
-    JNSegmentedCollectionOptions(
-    backgroundColor: UIColor.white,
-    layoutType: JNSegmentedCollectionLayoutType.dynamic, 
-    verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil,
-    scrollEnabled: true,
-    contentItemLayoutMargins: 10.0
-    )
+        JNSegmentedCollectionOptions(
+            backgroundColor: UIColor.white,
+            layoutType: JNSegmentedCollectionLayoutType.dynamic, 
+            verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil,
+            scrollEnabled: true,
+            contentItemLayoutMargins: 10.0
+        )
     ```
 
 - ***JNSegmented Collection Layout Type:***
 
 The Segmented Control has two types of layout for items:
-    - **Dynamic:** The width of each item will be according to its content.
-    -  **Fixed:** The width of each item will be fixed according to max  visible Items.
+
+        - **Dynamic:** The width of each item will be according to its content.
+        - **Fixed:** The width of each item will be fixed according to max  visible Items.
     
     ```swift
-    enum  JNSegmentedCollectionLayoutType {
-    case dynamic
-    case fixed(maxVisibleItems: Int)
-    }
+        enum  JNSegmentedCollectionLayoutType {
+            case dynamic
+            case fixed(maxVisibleItems: Int)
+        }
     ```
 - ***JNSegmented Vertical Separator Options:***
 
 The Segmented Control has the ability to show separator line between items, that has the following settings:
+
     -  **HeigthRatio:**  Separator view height Ratio accroding to collection view height, max value is 1 and min is 0.
     -  **Width:** Separator view width.
     -  **Color:** Separator view background color.
     
     ```swift
-    JNSegmentedCollectionItemVerticalSeparatorOptions (
-    heigthRatio: 0.3, 
-    width: 1.0,
-    color: UIColor.blue
-    )
+        JNSegmentedCollectionItemVerticalSeparatorOptions (
+            heigthRatio: 0.3, 
+            width: 1.0,
+            color: UIColor.blue
+        )
     ```
 
 ## Example
