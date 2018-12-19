@@ -12,11 +12,7 @@
 
 ## Preview
 
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/>
 
 ## Requirements:
 
