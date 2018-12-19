@@ -42,7 +42,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         
         // Set title label
         self.titleLabel.attributedText = representable.attributedString
-        self.titleLabel.minimumScaleFactor = 0.5
+        self.titleLabel.minimumScaleFactor = 0.3
         self.titleLabel.adjustsFontSizeToFitWidth = true
     }
     
@@ -69,11 +69,11 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     
     /**
      Calculate Cell Width
-     - Parameter representable: The Segmented Control Collection View Cell Representable object
+     - Parameter attributedString: Attributed String.
      - Returns: the calculated width, CGFloat value.
      */
-    class func calculateCellWidth(with representable: JNSegmentedControlCollectionViewCellRepresentable, collectionViewHeight: CGFloat) -> CGFloat {
-        let size = representable.attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+    class func calculateCellWidth(with attributedString: NSAttributedString, collectionViewHeight: CGFloat) -> CGFloat {
+        let size = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
         return size.width
     }
 }

@@ -1,9 +1,9 @@
 //
 //  JNSegmentedControlViewControTableViewlDelegate+DataSource.swift
-//  JNSegmentedControl_Example
+//  JNSegmentedControl
 //
 //  Created by JNDisrupter on 11/29/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 JNDisrupter. All rights reserved.
 //
 
 import UIKit

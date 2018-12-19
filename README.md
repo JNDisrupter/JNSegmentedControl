@@ -12,16 +12,17 @@
 
 ## Preview
 
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl1.gif" width="280"/>  
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl2.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl3.gif" width="280"/>
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/JNSegmentedControl4.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/>
 
 ## Requirements:
 
 - Xcode 9
-- iOS 8.x+
-- Swift 4.0+
+- iOS 9.0+
+- Swift 4.2+
 
 
 ## Installation
@@ -29,7 +30,7 @@
 JNSegmentedControl is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-```ruby
+```swift
 pod 'JNSegmentedControl'
 ```
 
@@ -89,7 +90,6 @@ let item  = NSAttributedString(string: “Selected Item", attributes: [])
 items.append(item)
 ```
 
-
 - **Handling callback:**
 
 ```swift
@@ -98,115 +98,55 @@ print("Selected item: ", segment)
 }
 ```
 
-- **Options Customization:**
+- ***Options Customization::***
 
-```swift
-JNSegmentedCollectionOptions(
-backgroundColor: UIColor.white,
-position: JNSegmentedCollectionPosition.dynamic, 
-verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil,
-scrollEnabled: true,
-numberOfLines: 0
-)
-```
+    - **backgroundColor**: Segmented control background color.
+    - **layoutType**: case value from **JNSegmentedCollectionLayoutType** enumeration.
+    - **verticalSeparatorOption**s: instance from **JNSegmentedCollectionItemVerticalSeparatorOptions** struct as vertical separator between segments.
+    - **scrollEnabled**: segmented control is scrolling enabled.
+    - **contentItemLayoutMargins**: Content item layout margins from Left and Right.
 
-```swift
-enum  JNSegmentedCollectionPosition {
-case dynamic
-case fixed(maxVisibleItems: Int)
-}
-```
+    ```swift
+    JNSegmentedCollectionOptions(
+    backgroundColor: UIColor.white,
+    layoutType: JNSegmentedCollectionLayoutType.dynamic, 
+    verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil,
+    scrollEnabled: true,
+    contentItemLayoutMargins: 10.0
+    )
+    ```
 
-```swift
-JNSegmentedCollectionItemVerticalSeparatorOptions (
-ratio: 0.3, 
-color: UIColor.red
-)
-```
+- ***JNSegmented Collection Layout Type:***
 
-- **Parameters:**
+The Segmented Control has two types of layout for items:
+    - **Dynamic:** The width of each item will be according to its content.
+    -  **Fixed:** The width of each item will be fixed according to max  visible Items.
+    
+    ```swift
+    enum  JNSegmentedCollectionLayoutType {
+    case dynamic
+    case fixed(maxVisibleItems: Int)
+    }
+    ```
+- ***JNSegmented Vertical Separator Options:***
 
-- **backgroundColor**: Segmented Control Background Color.
-- **position**: case value from JNSegmentedCollectionPosition enumeration.
-- **verticalSeparatorOption**s: instance from JNSegmentedCollectionItemVerticalSeparatorOptions struct as vertical separator between segments.
-- **scrollEnabled**: segmented control is scrolling enabled.
-- **numberOfLines**: number of lines ( 0 for automatic height / 1+ for specified number of lines).
+The Segmented Control has the ability to show separator line between items, that has the following settings:
+    -  **HeigthRatio:**  Separator view height Ratio accroding to collection view height, max value is 1 and min is 0.
+    -  **Width:** Separator view width.
+    -  **Color:** Separator view background color.
+    
+    ```swift
+    JNSegmentedCollectionItemVerticalSeparatorOptions (
+    heigthRatio: 0.3, 
+    width: 1.0,
+    color: UIColor.blue
+    )
+    ```
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-- **Example As Text Only Style:**
-
-```swift
-let items = ["Area Chart", "Bar Chart", "Line Chart", "Pie Chart", "Area Chart”]
-var attributedStringItems: [NSAttributedString] = []
-var selectedAttributedStringItems: [NSAttributedString] = []
-let defaultAttributes = [NSAttributedStringKey.font: UIFont(name: "OpenSans", size: 12) ?? UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:  UIColor.black]
-let selectedAttributes = [NSAttributedStringKey.font: UIFont(name: "OpenSans", size: 12) ?? UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:  UIColor.blue]
-
-for item in self.items {
-
-// Default Attributed String
-let defaultAttributedString = NSAttributedString(string: item, attributes: defaultAttributes)
-attributedStringItems.append(defaultAttributedString)
-
-// Selected Attributed string
-let selectedAttributedString = NSAttributedString(string: item, attributes: selectedAttributes)
-selectedAttributedStringItems.append(selectedAttributedString)
-}
-
-let verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions (
-ratio: 0.3,
-color: UIColor.red
-)
-
-let options = JNSegmentedCollectionOptions(
-backgroundColor: .clear,
-position: JNSegmentedCollectionPosition.dynamic,
-verticalSeparatorOptions: verticalSeparatorOptions,
-scrollEnabled: true,
-numberOfLines: 0
-)
-
-self.segmentedControlView.setup(
-items: self.attributedStringItems,
-selectedItems: self.selectedAttributedStringItems,
-options: options
-}
-```
-
-
-- **Example As Text With ي Style:**
-Image position to label (under / above / after / before) is adjusted via the combination of (string and image attachment) using the **NSMutableAttributedString()**:
-
-
-```swift
-
-let titleString = “Title"
-let imageAttachment = NSTextAttachment()
-let fullString = NSMutableAttributedString()
-
-//  image under label
-fullString.append(NSAttributedString(string))
-fullString.append(NSAttributedString("\n”))
-fullString.append.append(NSAttributedString(attachment: selectedImageAttachment))
-
-//  image above label
-fullString.append(NSAttributedString(attachment: selectedImageAttachment))
-fullString.append(NSAttributedString("\n”))
-fullString.append(NSAttributedString(string))
-
-//  image after label
-fullString.append(NSAttributedString(string))
-fullString.append(NSAttributedString(“ ”))
-fullString.append(NSAttributedString(attachment: selectedImageAttachment))
-
-//  image before label
-fullString.append(NSAttributedString(attachment: selectedImageAttachment))
-fullString.append(NSAttributedString(“ ”))
-fullString.append(NSAttributedString(string))    
-```
 
 ## Author
 

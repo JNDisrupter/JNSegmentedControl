@@ -53,43 +53,32 @@ extension JNSegmentedCollectionView: UICollectionViewDelegateFlowLayout {
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.calculateWidth(for: indexPath), height: self.collectionView?.frame.height ?? 0.0)
+        return self.segmentedItems[indexPath.section].cellSize
     }
     
     /**
-     Calculate Width.
-     - Parameter indexPath: IndexPath
-     - Returns with: calculated width CGFloat value
+     Get Fixed Cell Width for Fixed Layout Type
+     - Parameter maxVisibleItems: Max Visible Items in collection view.
+     - Returns: calculated width as CGFloat value.
      */
-    public func calculateWidth(for indexPath: IndexPath) -> CGFloat {
+    public func getCellWidthForFixedLayoutType(maxVisibleItems: Int) -> CGFloat {
         
         guard let collectionView = self.collectionView else { return 0.0 }
         let collectionViewWidth = collectionView.frame.width
         
-        switch self.options.layoutType {
-        case .fixed(let maxVisibleItems):
-            let maxItems = maxVisibleItems > self.segmentedItems.count ? self.segmentedItems.count : maxVisibleItems
-            let totalSeparatorWidth = CGFloat(self.segmentedItems.count) * (self.options.verticalSeparatorOptions?.width ?? 1.0)
-            let cellWidth = maxItems == 0 ? 0 : floor((collectionViewWidth  - totalSeparatorWidth) / CGFloat(maxItems))
-            return cellWidth
-        case .dynamic:
-            
-            // Item Layout Margin
-            let itemLayoutMargin = self.options.contentItemLayoutMargins * 2.0
-            
-            var dynamicWidth: CGFloat = 0
-            for item in self.segmentedItems {
-                dynamicWidth += JNSegmentedControlCollectionViewCell.calculateCellWidth(with: item, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
-            }
-            let itemWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.segmentedItems[indexPath.section], collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) +  itemLayoutMargin
-            
-            let width = dynamicWidth > collectionViewWidth ? itemWidth
-                : itemWidth + ((collectionViewWidth - dynamicWidth) / CGFloat(self.segmentedItems.count))
-            
-            return width
+        var maxItems = maxVisibleItems > self.segmentedItems.count ? self.segmentedItems.count : maxVisibleItems
+        
+        // Max items shoudl not be less than one item
+        if maxItems <= 0 {
+            maxItems = 1
         }
+        
+        let totalSeparatorWidth = CGFloat(maxItems - 1) * (self.options.verticalSeparatorOptions?.width ?? 1.0)
+        let cellWidth = floor((collectionViewWidth  - totalSeparatorWidth) / CGFloat(maxItems))
+        return cellWidth
+        
     }
-    
+
     /**
      View For Supplementary Element Of Kind.
      */
@@ -107,7 +96,7 @@ extension JNSegmentedCollectionView: UICollectionViewDelegateFlowLayout {
             }else{
                 headerView.setupView(options: self.options.verticalSeparatorOptions, collectionViewHeight: self.collectionView?.frame.height ??  0)
             }
-          
+            
             return headerView
             
         }else{
@@ -118,9 +107,9 @@ extension JNSegmentedCollectionView: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-           return CGSize(width: 0.0, height: collectionView.frame.height)
+            return CGSize(width: 0.0, height: collectionView.frame.height)
         }else{
-             return CGSize(width: self.options.verticalSeparatorOptions?.width ?? 0.0, height: collectionView.frame.height)
+            return CGSize(width: self.options.verticalSeparatorOptions?.width ?? 0.0, height: collectionView.frame.height)
         }
     }
 }

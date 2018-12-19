@@ -11,21 +11,6 @@ import UIKit
 /// JNSegmentedControlCollectionViewCellRepresentable
 class JNSegmentedControlCollectionViewCellRepresentable {
     
-    /// Cell height
-    var cellHeight: CGFloat
-    
-    /// Cell reuse identifier
-    var cellReuseIdentifier: String
-    
-    /// Is loading
-    var isLoading: Bool
-    
-    /// Item Data Index
-    var itemDataIndex: Int
-    
-    /// Selector Type
-    var selectorType: String
-    
     /// Attributed String
     private(set) var attributedString: NSAttributedString
     
@@ -38,8 +23,8 @@ class JNSegmentedControlCollectionViewCellRepresentable {
     /// Is Selected
     private(set) var isSelected: Bool = false
     
-    /// Attributed String
-    private(set) var collectionViewSize: CGSize
+    /// Cell Size
+    private(set) var cellSize: CGSize
     
     /**
      Initializer
@@ -47,23 +32,17 @@ class JNSegmentedControlCollectionViewCellRepresentable {
     init() {
         
         // Set default values
-        self.cellHeight = 0.0
-        self.cellReuseIdentifier = JNSegmentedControlCollectionViewCell.getReuseIdentifier()
-        self.isLoading = false
-        self.itemDataIndex = -1
-        self.selectorType = ""
         self.attributedString = NSAttributedString()
         self.options = JNSegmentedCollectionOptions()
         self.isLastItem = false
         self.isSelected = false
-        self.collectionViewSize = CGSize.zero
+        self.cellSize = CGSize.zero
     }
     
     /**
      Initialize
-     - Parameter title: Title String
      */
-    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, collectionViewSize: CGSize = CGSize.zero) {
+    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero) {
         self.init()
         
         // build representable
@@ -71,7 +50,7 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.options = options
         self.isLastItem = isLastItem
         self.isSelected = isSelected
-        self.collectionViewSize = collectionViewSize
+        self.cellSize = cellSize
     }
     
     /**
@@ -82,5 +61,13 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         
         // Set Is Selected
         self.isSelected = isSelected
+    }
+    
+    /**
+     Update Cell Size
+     - Parameter isSelected: Is Selected Value
+     */
+    func updateCellSize(_ newSize: CGSize) {
+        self.cellSize = newSize
     }
 }
