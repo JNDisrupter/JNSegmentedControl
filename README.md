@@ -1,6 +1,6 @@
 # JNSegmentedControl
 
-[![CI Status](https://img.shields.io/travis/ihmouda/JNSegmentedControl.svg?style=flat)](https://travis-ci.org/ihmouda/JNSegmentedControl)
+[![CI Status](https://img.shields.io/travis/ihmouda/JNSegmentedControl.svg?style=flat)](https://travis-ci.org/JNDisrupter/JNSegmentedControl)
 [![Version](https://img.shields.io/cocoapods/v/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
 [![License](https://img.shields.io/cocoapods/l/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
 [![Platform](https://img.shields.io/cocoapods/p/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
