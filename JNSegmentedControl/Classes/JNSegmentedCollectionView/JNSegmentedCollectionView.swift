@@ -147,11 +147,16 @@ public class JNSegmentedCollectionView: UIView {
         // Update Layout
         self.layoutIfNeeded()
         
-        // build representables
-        self.buildRepresentables()
-        
-        // reload data
-        self.collectionView?.reloadData()
+        // Update Selected Item
+        if self.selectedIndex >= self.items.count {
+            self.selectedIndex = self.items.count - 1
+        }else{
+            // build representables
+            self.buildRepresentables()
+            
+            // reload data
+            self.collectionView?.reloadData()
+        }
     }
     
     /**
