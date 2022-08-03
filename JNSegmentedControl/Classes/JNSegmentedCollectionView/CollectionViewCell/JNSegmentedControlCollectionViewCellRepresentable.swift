@@ -26,6 +26,21 @@ class JNSegmentedControlCollectionViewCellRepresentable {
     /// Cell Size
     private(set) var cellSize: CGSize
     
+    /// Title Label Container View Corner Radius
+    private(set) var titleLabelContainerViewCornerRadius: CGFloat
+    
+    /// Title Label Container View Background Color
+    private(set) var titleLabelContainerViewBackgroundColor: UIColor
+    
+    /// Badge Container View Background Color
+    private(set) var badgeContainerViewBackgroundColor: UIColor
+    
+    /// Badge Font
+    private(set) var badgeFont: UIFont
+    
+    /// Badge Count
+    private(set) var badgeCount: Int?
+    
     /**
      Initializer
      */
@@ -37,12 +52,16 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.isLastItem = false
         self.isSelected = false
         self.cellSize = CGSize.zero
+        self.titleLabelContainerViewCornerRadius = 0.0
+        self.titleLabelContainerViewBackgroundColor = .clear
+        self.badgeContainerViewBackgroundColor = .clear
+        self.badgeFont = UIFont()
     }
     
     /**
      Initialize
      */
-    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero) {
+    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, titleLabelContainerViewCornerRadius: CGFloat, titleLabelContainerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?) {
         self.init()
         
         // build representable
@@ -51,6 +70,11 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.isLastItem = isLastItem
         self.isSelected = isSelected
         self.cellSize = cellSize
+        self.titleLabelContainerViewCornerRadius = titleLabelContainerViewCornerRadius
+        self.titleLabelContainerViewBackgroundColor = titleLabelContainerViewBackgroundColor
+        self.badgeContainerViewBackgroundColor = badgeContainerViewBackgroundColor
+        self.badgeFont = badgeFont
+        self.badgeCount = badgeCount
     }
     
     /**

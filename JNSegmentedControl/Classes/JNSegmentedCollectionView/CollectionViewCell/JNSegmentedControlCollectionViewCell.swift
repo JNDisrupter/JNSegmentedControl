@@ -8,11 +8,41 @@
 
 import UIKit
 
+/// Component Values
+private struct ComponentValues {
+    static let badgeCountLabelMargins: CGFloat                  = 2.0
+    static let badgeCountLabelContainerViewTrailing: CGFloat    = 5.0
+}
+
 /// JNSegmentedControlCollectionViewCell
 class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     
+    /// Title Label Container View
+    @IBOutlet private weak var titleLabelContainerView: UIView!
+    
     /// Title Label
     @IBOutlet private weak var titleLabel: UILabel!
+    
+    /// Badge Count Container View
+    @IBOutlet private weak var badgeCountContainerView: UIView!
+    
+    /// Badge Count Label
+    @IBOutlet private weak var badgeCountLabel: UILabel!
+    
+    /// Badge Count Label Container View Trailing Constraint
+    @IBOutlet private weak var badgeCountLabelContainerViewTrailingConstraint: NSLayoutConstraint!
+    
+    /// Badge Count Label Top Constraint
+    @IBOutlet private weak var badgeCountLabelTopConstraint: NSLayoutConstraint!
+    
+    /// Badge Count Label Leading Constraint
+    @IBOutlet private weak var badgeCountLabelLeadingConstraint: NSLayoutConstraint!
+    
+    /// Badge Count Label Bottom Constraint
+    @IBOutlet private weak var badgeCountLabelBottomConstraint: NSLayoutConstraint!
+    
+    /// Badge Count Label Trailing Constraint
+    @IBOutlet private weak var badgeCountLabelTrailingConstraint: NSLayoutConstraint!
     
     /**
      Awake From Nib
@@ -44,6 +74,50 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         self.titleLabel.attributedText = representable.attributedString
         self.titleLabel.minimumScaleFactor = 0.3
         self.titleLabel.adjustsFontSizeToFitWidth = true
+        
+        // Set background colors
+        self.titleLabelContainerView.backgroundColor = representable.titleLabelContainerViewBackgroundColor
+        self.badgeCountContainerView.backgroundColor = representable.badgeContainerViewBackgroundColor
+        
+        // Set font
+        self.badgeCountLabel.font = representable.badgeFont
+        
+        // Get badge count
+        if let badgeCount = representable.badgeCount {
+            
+            // Set text
+            self.badgeCountLabel.text = " \(badgeCount) "
+            
+            // Set constraints to default value
+            self.badgeCountLabelTopConstraint.constant = ComponentValues.badgeCountLabelMargins
+            self.badgeCountLabelBottomConstraint.constant = ComponentValues.badgeCountLabelMargins
+            self.badgeCountLabelLeadingConstraint.constant = ComponentValues.badgeCountLabelMargins
+            self.badgeCountLabelTrailingConstraint.constant = ComponentValues.badgeCountLabelMargins
+            self.badgeCountLabelContainerViewTrailingConstraint.constant = ComponentValues.badgeCountLabelContainerViewTrailing
+        }
+        else {
+            
+            // Remove the text
+            self.badgeCountLabel.text = nil
+            
+            // Set constraints to zero
+            self.badgeCountLabelContainerViewTrailingConstraint.constant = 0
+            self.badgeCountLabelTopConstraint.constant = 0
+            self.badgeCountLabelBottomConstraint.constant = 0
+            self.badgeCountLabelLeadingConstraint.constant = 0
+            self.badgeCountLabelTrailingConstraint.constant = 0
+        }
+        
+        // Layout the view before applying the corner radius
+        self.layoutIfNeeded()
+        
+        // Circle badge count container view
+        self.badgeCountContainerView.clipsToBounds = true
+        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.bounds.size.height / 2
+        
+        // Setup badge count container view corner radius
+        self.titleLabelContainerView.clipsToBounds = true
+        self.titleLabelContainerView.layer.cornerRadius = representable.titleLabelContainerViewCornerRadius
     }
     
     

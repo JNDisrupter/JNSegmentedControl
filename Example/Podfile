@@ -2,8 +2,4 @@ use_frameworks!
 
 target 'JNSegmentedControl_Example' do
   pod 'JNSegmentedControl', :path => '../'
-
-  target 'JNSegmentedControl_Tests' do
-    inherit! :search_paths
-  end
 end
