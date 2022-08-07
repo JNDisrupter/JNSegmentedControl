@@ -223,11 +223,11 @@ public class JNSegmentedCollectionView: UIView {
             let isSelected = index == self.selectedIndex
             let isLastItem = index == self.items.count - 1
             
-            // Selected item is by default the last item in the array, in case the items list is not equal the selected items list
-            var selectedItem = self.items.last!
+            // Selected item is by default the normal state attributed item.
+            var selectedItem = self.items[index]
             
-            // If the index is in range of selected items list, then set the selected item, else the selected item will be considered as last item in the items list
-            if self.selectedItems.count > index {
+            // If the index is in range of selected items list, then set the selected item, else the selected item will be same as normal attributes.
+            if index < self.selectedItems.count  {
                 selectedItem = self.selectedItems[index]
             }
             
@@ -250,13 +250,34 @@ public class JNSegmentedCollectionView: UIView {
                 style.alignment = NSTextAlignment.center
                 selectedAttrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSRange(location: 0, length: selectedAttrString.length))
             }
+
+            // Badge count
+            var badgeCount: Int?
             
+            // Set badge count
+            if index < self.badgeCounts.count {
+                badgeCount = self.badgeCounts[index]
+            }
             
+            // Item option is the last item in the items options list
+            var itemOption = itemOptions.last ?? JNSegmentedCollectionItemOptions()
+            
+            // If the index is in range of items options list, then set the item option, else the item option will be considered as last item in the items options list
+            if  index < itemOptions.count {
+                itemOption = itemOptions[index]
+            }
+            
+            // add representables
+            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.badgeTextColor))
+            
+            // add selected representables
+            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.selectedBadgeTextColor))
             
             if case JNSegmentedCollectionLayoutType.dynamic = self.options.layoutType {
-                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.items[index], collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
                 
-                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedItem, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.items[index], badgeAttributedString: self.segmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                
+                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedItem, badgeAttributedString: self.selectedSegmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
                 
                 // Update Total Cells Width
                 totalCellsWidth += cellWidth
@@ -269,29 +290,11 @@ public class JNSegmentedCollectionView: UIView {
                 // Update Cell Size
                 cellSize = CGSize(width: cellWidth, height: (self.collectionView?.frame.height ?? 0.0))
                 selectedCellSize = CGSize(width: selectedCellWidth, height: (self.collectionView?.frame.height ?? 0.0))
+                
+                // Update sizes
+                self.segmentedItems.last?.updateCellSize(cellSize)
+                self.selectedSegmentedItems.last?.updateCellSize(selectedCellSize)
             }
-
-            // Badge count
-            var badgeCount: Int?
-            
-            // Set badge count
-            if self.badgeCounts.count > index {
-                badgeCount = self.badgeCounts[index]
-            }
-            
-            // Item option is the last item in the items options list
-            var itemOption = itemOptions.last ?? JNSegmentedCollectionItemOptions()
-            
-            // If the index is in range of items options list, then set the item option, else the item option will be considered as last item in the items options list
-            if itemOptions.count > index {
-                itemOption = itemOptions[index]
-            }
-            
-            // add representables
-            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount))
-            
-            // add selected representables
-            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount))
         }
         
         // Collection width

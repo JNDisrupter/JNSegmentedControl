@@ -14,7 +14,7 @@ private struct ComponentValues {
     static let badgeCountLabelContainerViewTrailing: CGFloat    = 5.0
 }
 
-/// JNSegmentedControlCollectionViewCell
+/// JN Segmented Control Collection View Cell
 class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     
     /// Title Label Container View
@@ -52,6 +52,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         
         // clear background color
         self.backgroundColor = UIColor.clear
+        self.badgeCountLabel.textAlignment = .center
     }
     
     /**
@@ -79,14 +80,11 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         self.titleLabelContainerView.backgroundColor = representable.titleLabelContainerViewBackgroundColor
         self.badgeCountContainerView.backgroundColor = representable.badgeContainerViewBackgroundColor
         
-        // Set font
-        self.badgeCountLabel.font = representable.badgeFont
-        
         // Get badge count
-        if let badgeCount = representable.badgeCount {
+        if let badgeAttributedText = representable.badgeAttributedString {
             
             // Set text
-            self.badgeCountLabel.text = " \(badgeCount) "
+            self.badgeCountLabel.attributedText = badgeAttributedText
             
             // Set constraints to default value
             self.badgeCountLabelTopConstraint.constant = ComponentValues.badgeCountLabelMargins
@@ -120,8 +118,6 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         self.titleLabelContainerView.layer.cornerRadius = representable.titleLabelContainerViewCornerRadius
     }
     
-    
-    
     // MARK: - Class methods
     
     /**
@@ -146,8 +142,15 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
      - Parameter attributedString: Attributed String.
      - Returns: the calculated width, CGFloat value.
      */
-    class func calculateCellWidth(with attributedString: NSAttributedString, collectionViewHeight: CGFloat) -> CGFloat {
-        let size = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
-        return size.width
+    class func calculateCellWidth(with attributedString: NSAttributedString, badgeAttributedString: NSAttributedString?, collectionViewHeight: CGFloat) -> CGFloat {
+        var width = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+        
+        // Calculate badge
+        if let badgeAttributedString = badgeAttributedString {
+            width += badgeAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            width += ComponentValues.badgeCountLabelMargins*2
+            width += ComponentValues.badgeCountLabelContainerViewTrailing
+        }
+        return ceil(width)
     }
 }

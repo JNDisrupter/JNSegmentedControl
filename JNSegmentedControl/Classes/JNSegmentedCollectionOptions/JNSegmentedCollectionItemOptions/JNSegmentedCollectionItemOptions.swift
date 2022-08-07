@@ -9,8 +9,8 @@ import Foundation
 
 /// JN Segmented Collection Item Option Type
 public enum JNSegmentedCollectionItemOptionType {
-    case single(option: JNSegmentedCollectionItemOptions)
-    case multiple(options: [JNSegmentedCollectionItemOptions])
+    case single(option: JNSegmentedCollectionItemOptions) // Single option for all items
+    case multiple(options: [JNSegmentedCollectionItemOptions]) // Multiple option for all items
 }
 
 /// JN Segmented Collection Item Options
@@ -37,6 +37,12 @@ public struct JNSegmentedCollectionItemOptions {
     /// Selected Badge Font
     var selectedBadgeFont: UIFont
     
+    /// Badge text color
+    var badgeTextColor: UIColor
+    
+    /// Selected badge text color
+    var selectedBadgeTextColor: UIColor
+    
     /**
      Initializer
      */
@@ -50,6 +56,8 @@ public struct JNSegmentedCollectionItemOptions {
         self.selectedBadgeBackgroundColor = .clear
         self.badgeFont = UIFont.systemFont(ofSize: 15)
         self.selectedBadgeFont = UIFont.systemFont(ofSize: 15)
+        self.badgeTextColor = .black
+        self.selectedBadgeTextColor = .black
     }
     
     /**
@@ -61,8 +69,10 @@ public struct JNSegmentedCollectionItemOptions {
      - Parameter selectedBadgeBackgroundColor: Selected state background color
      - Parameter badgeFont: Normal state font
      - Parameter selectedBadgeFont: Selected state font
+     - Parameter badgeTextColor: Badge text color
+     - Parameter selectedBadgeTextColor: Selected badge text color
      */
-    public init(cornerRadius: CGFloat, backgroundColor: UIColor, selectedBackgroundColor: UIColor, badgeBackgroundColor: UIColor, selectedBadgeBackgroundColor: UIColor, badgeFont: UIFont, selectedBadgeFont: UIFont) {
+    public init(cornerRadius: CGFloat, backgroundColor: UIColor, selectedBackgroundColor: UIColor, badgeBackgroundColor: UIColor, selectedBadgeBackgroundColor: UIColor, badgeFont: UIFont, selectedBadgeFont: UIFont, badgeTextColor: UIColor, selectedBadgeTextColor: UIColor) {
         
         // Set values
         self.cornerRadius = cornerRadius
@@ -72,5 +82,7 @@ public struct JNSegmentedCollectionItemOptions {
         self.selectedBadgeBackgroundColor = selectedBadgeBackgroundColor
         self.badgeFont = badgeFont
         self.selectedBadgeFont = selectedBadgeFont
+        self.badgeTextColor = badgeTextColor
+        self.selectedBadgeTextColor = selectedBadgeTextColor
     }
 }
