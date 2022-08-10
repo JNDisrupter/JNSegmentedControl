@@ -62,7 +62,7 @@ public class JNSegmentedCollectionView: UIView {
     /**
      Init with frame
      */
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         
         // Init Sub Views
