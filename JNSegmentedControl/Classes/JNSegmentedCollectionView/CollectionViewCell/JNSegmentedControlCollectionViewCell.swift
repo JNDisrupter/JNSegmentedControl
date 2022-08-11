@@ -111,7 +111,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         
         // Circle badge count container view
         self.badgeCountContainerView.clipsToBounds = true
-        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.bounds.size.height / 2
+        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.frame.size.height/2
         
         // Setup badge count container view corner radius
         self.titleLabelContainerView.clipsToBounds = true
@@ -125,7 +125,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // Round
-        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.bounds.size.height / 2
+        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.frame.size.height/2
         self.titleLabelContainerView.layer.cornerRadius = self.titleLabelContainerView.layer.cornerRadius
     }
     
