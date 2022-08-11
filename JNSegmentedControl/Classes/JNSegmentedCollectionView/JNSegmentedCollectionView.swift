@@ -30,19 +30,17 @@ public class JNSegmentedCollectionView: UIView {
     var selectedItems: [NSAttributedString] = []
     
     /// Badge Counts
-    var badgeCounts: [Int] = []
+    var badgeCounts: [Int?] = []
     
-    /// Value Did Change
-    public var valueDidChange: ((_ index: Int) -> Void)?
+    /// Did select item
+    public var didSelectItem: ((_ index: Int) -> Void)?
     
     /// Selected Index
     public var selectedIndex: Int = 0 {
         didSet {
             
+            // If new one was selected
             if selectedIndex != oldValue {
-                
-                // call closure for value did change
-                self.valueDidChange?(selectedIndex)
                 
                 // update selected item
                 self.updateSelectedItem()
@@ -56,6 +54,9 @@ public class JNSegmentedCollectionView: UIView {
                 // reload data
                 self.collectionView?.reloadData()
             }
+            
+            // Did select item
+            self.didSelectItem?(selectedIndex)
         }
     }
     
@@ -132,9 +133,9 @@ public class JNSegmentedCollectionView: UIView {
      Setup view
      - parameter items : Array of attributed string
      - parameter options : JNSegmentedCollectionOptions
-     - parameter badgeCounts: List of integers to display a count beside each segment item
+     - parameter badgeCounts: List of integers to display a count beside each segment item, 0 values will appear on badge, if you wish to not show the badge for item, pass nil.
      */
-    open func setup(items: [NSAttributedString], selectedItems: [NSAttributedString], options: JNSegmentedCollectionOptions?, badgeCounts: [Int] = []) {
+    open func setup(items: [NSAttributedString], selectedItems: [NSAttributedString], options: JNSegmentedCollectionOptions?, badgeCounts: [Int?] = []) {
         
         // Set Options
         if let options = options {
