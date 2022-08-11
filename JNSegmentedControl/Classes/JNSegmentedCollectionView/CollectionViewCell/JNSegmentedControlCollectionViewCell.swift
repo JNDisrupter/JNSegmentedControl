@@ -118,6 +118,17 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         self.titleLabelContainerView.layer.cornerRadius = representable.titleLabelContainerViewCornerRadius
     }
     
+    /**
+     Layout subviews
+     */
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Round
+        self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.bounds.size.height / 2
+        self.titleLabelContainerView.layer.cornerRadius = self.titleLabelContainerView.layer.cornerRadius
+    }
+    
     // MARK: - Class methods
     
     /**
@@ -147,7 +158,10 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         
         // Calculate badge
         if let badgeAttributedString = badgeAttributedString {
-            width += badgeAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            let maxWidthAttributedString = NSAttributedString(string: "+99", attributes: badgeAttributedString.attributes(at: 0, effectiveRange: nil))
+            
+            // Calculate the max for the badge
+            width += maxWidthAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
             width += ComponentValues.badgeCountLabelMargins*2
             width += ComponentValues.badgeCountLabelContainerViewTrailing
         }

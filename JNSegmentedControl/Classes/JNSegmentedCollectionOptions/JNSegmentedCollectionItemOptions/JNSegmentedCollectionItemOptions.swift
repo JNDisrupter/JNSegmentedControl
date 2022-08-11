@@ -54,8 +54,8 @@ public struct JNSegmentedCollectionItemOptions {
         self.selectedBackgroundColor = .clear
         self.badgeBackgroundColor = .clear
         self.selectedBadgeBackgroundColor = .clear
-        self.badgeFont = UIFont.systemFont(ofSize: 15)
-        self.selectedBadgeFont = UIFont.systemFont(ofSize: 15)
+        self.badgeFont = UIFont.systemFont(ofSize: 11)
+        self.selectedBadgeFont = UIFont.systemFont(ofSize: 11)
         self.badgeTextColor = .black
         self.selectedBadgeTextColor = .black
     }

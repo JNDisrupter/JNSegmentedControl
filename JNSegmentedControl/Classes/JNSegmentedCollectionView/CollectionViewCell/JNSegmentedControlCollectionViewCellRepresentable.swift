@@ -71,9 +71,18 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.titleLabelContainerViewBackgroundColor = titleLabelContainerViewBackgroundColor
         self.badgeContainerViewBackgroundColor = badgeContainerViewBackgroundColor
         
-        // Set badge attributed string
+        // set badge count
         if let badgeCount = badgeCount {
-            self.badgeAttributedString = NSAttributedString(string: badgeCount.description, attributes: [NSAttributedString.Key.font: badgeFont, NSAttributedString.Key.foregroundColor: badgeTextColor])
+            
+            // Set badge attributed string
+            let badgeFont = badgeFont.withSize(11)
+            var badgeCountString = badgeCount.description
+            
+            if badgeCount > 99 {
+                badgeCountString = "+99"
+            }
+            
+            self.badgeAttributedString = NSAttributedString(string: badgeCountString, attributes: [NSAttributedString.Key.font: badgeFont, NSAttributedString.Key.foregroundColor: badgeTextColor])
         }
     }
     
