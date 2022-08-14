@@ -66,7 +66,7 @@ extension JNSegmentedCollectionView: UICollectionViewDelegateFlowLayout {
         guard let collectionView = self.collectionView else { return 0.0 }
         let collectionViewWidth = collectionView.frame.width
         
-        var maxItems = maxVisibleItems > self.segmentedItems.count ? self.segmentedItems.count : maxVisibleItems
+        var maxItems = maxVisibleItems > self.items.count ? self.items.count : maxVisibleItems
         
         // Max items shoudl not be less than one item
         if maxItems <= 0 {

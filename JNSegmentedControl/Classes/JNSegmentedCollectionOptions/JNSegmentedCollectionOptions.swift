@@ -84,6 +84,9 @@ public struct JNSegmentedCollectionOptions {
     /// Content Item Layout Margins
     var contentItemLayoutMargins: CGFloat
     
+    /// Item Option Type
+    var itemOptionType: JNSegmentedCollectionItemOptionType
+    
     /**
      Initializer
      */
@@ -93,15 +96,17 @@ public struct JNSegmentedCollectionOptions {
         self.verticalSeparatorOptions = nil
         self.isScrollEnabled = true
         self.contentItemLayoutMargins = 30.0
+        self.itemOptionType = JNSegmentedCollectionItemOptionType.single(option: JNSegmentedCollectionItemOptions())
     }
     
     /**
      Initializer
      */
-    public init(backgroundColor: UIColor, layoutType: JNSegmentedCollectionLayoutType, verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil, scrollEnabled: Bool = true, contentItemLayoutMargins: CGFloat = 30.0 ) {
+    public init(backgroundColor: UIColor, layoutType: JNSegmentedCollectionLayoutType, itemOptionType: JNSegmentedCollectionItemOptionType = .single(option: JNSegmentedCollectionItemOptions()), verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil, scrollEnabled: Bool = true, contentItemLayoutMargins: CGFloat = 30.0 ) {
         
         self.layoutType = layoutType
         self.backgroundColor = backgroundColor
+        self.itemOptionType = itemOptionType
         self.verticalSeparatorOptions = verticalSeparatorOptions
         self.isScrollEnabled = scrollEnabled
         self.contentItemLayoutMargins = contentItemLayoutMargins
