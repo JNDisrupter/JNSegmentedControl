@@ -11,20 +11,32 @@ import UIKit
 /// JNSegmentedControlCollectionViewCellRepresentable
 class JNSegmentedControlCollectionViewCellRepresentable {
     
-    /// Attributed String
+    /// Attributed string
     private(set) var attributedString: NSAttributedString
     
     /// Options
     private(set) var options: JNSegmentedCollectionOptions
     
-    /// Is Last Item
+    /// Is last item
     private(set) var isLastItem: Bool
     
-    /// Is Selected
+    /// Is selected
     private(set) var isSelected: Bool = false
     
-    /// Cell Size
+    /// Cell size
     private(set) var cellSize: CGSize
+    
+    /// Title container view corner radius
+    private(set) var containerViewCornerRadius: CGFloat
+    
+    /// Title container view background color
+    private(set) var containerViewBackgroundColor: UIColor
+    
+    /// Badge container view background color
+    private(set) var badgeContainerViewBackgroundColor: UIColor
+    
+    /// Badge attributed string
+    private(set) var badgeAttributedString: NSAttributedString?
     
     /**
      Initializer
@@ -37,12 +49,16 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.isLastItem = false
         self.isSelected = false
         self.cellSize = CGSize.zero
+        self.containerViewCornerRadius = 0.0
+        self.containerViewBackgroundColor = .clear
+        self.badgeContainerViewBackgroundColor = .clear
+        self.badgeAttributedString = nil
     }
     
     /**
      Initialize
      */
-    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero) {
+    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, containerViewCornerRadius: CGFloat, containerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?, badgeTextColor: UIColor) {
         self.init()
         
         // build representable
@@ -51,6 +67,22 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.isLastItem = isLastItem
         self.isSelected = isSelected
         self.cellSize = cellSize
+        self.containerViewCornerRadius = containerViewCornerRadius
+        self.containerViewBackgroundColor = containerViewBackgroundColor
+        self.badgeContainerViewBackgroundColor = badgeContainerViewBackgroundColor
+        
+        // set badge count
+        if let badgeCount = badgeCount {
+            
+            // Set badge attributed string
+            var badgeCountString = badgeCount.description
+            
+            if badgeCount > 99 {
+                badgeCountString = "+99"
+            }
+            
+            self.badgeAttributedString = NSAttributedString(string: badgeCountString, attributes: [NSAttributedString.Key.font: badgeFont, NSAttributedString.Key.foregroundColor: badgeTextColor])
+        }
     }
     
     /**
