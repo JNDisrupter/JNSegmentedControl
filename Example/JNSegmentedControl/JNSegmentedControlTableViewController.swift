@@ -17,6 +17,7 @@ enum JNSegmentedControlStyle: Int {
     case imageAboveLabel
     case imageBeforeLabel
     case imageAfterLabel
+    case textWithBadge
     
     // Title
     var title: String {
@@ -34,6 +35,8 @@ enum JNSegmentedControlStyle: Int {
             return "Image Before Label"
         case .imageAfterLabel:
             return "Image After Label"
+        case .textWithBadge:
+            return "Text With Badge"
         }
     }
 }

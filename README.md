@@ -56,7 +56,8 @@ import JNSegmentedControl
         self.segmentedControlView.setup(
             items: [NSAttributedString],
             selectedItems: [NSAttributedString],
-            options: JNSegmentedCollectionOptions()
+            options: JNSegmentedCollectionOptions(),
+            badgeCounts: [Int]
         )
     ```
     
@@ -66,7 +67,8 @@ import JNSegmentedControl
         self.segmentedControlView.setup(
             items: [NSAttributedString],
             selectedItems: [NSAttributedString],
-            options: nil
+            options: nil,
+            badgeCounts: []
         )
     ```
 
@@ -76,9 +78,9 @@ import JNSegmentedControl
 
     - ***Default Items:***
         ```swift
-                var items = [NSAttributedString]()
-                let item  = NSAttributedString(string: “Default Item", attributes: [])
-                items.append(item)
+            var items = [NSAttributedString]()
+            let item  = NSAttributedString(string: “Default Item", attributes: [])
+            items.append(item)
         ```
 
     - ***Selected Items:***
@@ -91,7 +93,7 @@ import JNSegmentedControl
 - **Handling callback:**
 
     ```swift
-        self.segmentedControlView.valueDidChange = { segment in
+        self.segmentedControlView.didSelectItem = { segment in
             print("Selected item: ", segment)
         }
     ```
@@ -99,6 +101,7 @@ import JNSegmentedControl
 - **Options Customization:**
 
     - **backgroundColor**: Segmented control background color.
+    - **itemOptionType**: case value from **JNSegmentedCollectionItemOptionType** enumeration. 
     - **layoutType**: case value from **JNSegmentedCollectionLayoutType** enumeration.
     - **verticalSeparatorOption**s: instance from **JNSegmentedCollectionItemVerticalSeparatorOptions** struct as vertical separator between segments.
     - **scrollEnabled**: segmented control is scrolling enabled.
@@ -107,6 +110,7 @@ import JNSegmentedControl
     ```swift
         JNSegmentedCollectionOptions(
             backgroundColor: UIColor.white,
+            itemOptionType: JNSegmentedCollectionItemOptionType, 
             layoutType: JNSegmentedCollectionLayoutType.dynamic, 
             verticalSeparatorOptions: JNSegmentedCollectionItemVerticalSeparatorOptions? = nil,
             scrollEnabled: true,
@@ -114,6 +118,45 @@ import JNSegmentedControl
         )
     ```
 
+- ***JNSegmented Collection Item Option Type:***
+    
+    The Segmented Control Item has two types of layout for items:
+  
+     - **single(option: JNSegmentedCollectionItemOptions):** Single option for all items.
+     - **multiple(options: [JNSegmentedCollectionItemOptions]):**  Multiple option for all items.
+    
+    ```swift
+        enum  JNSegmentedCollectionItemOptionType {
+            case single(option: JNSegmentedCollectionItemOptions) 
+            case multiple(options: [JNSegmentedCollectionItemOptions]) 
+        }
+    ```
+    
+- ***JNSegmented Collection Item Options:***
+
+    The Segmented Control has the ability to show separator line between items, that has the following settings:
+
+    -  **CornerRadius:**  Corner radius for container view.
+    -  **backgroundColor:** Background color for container view.
+    -  **SelectedBackgroundColor:** Selected background color for container view.
+    -  **BadgeBackgroundColor:** Badge background color for badge count.
+    -  **SelectedBadgeBackgroundColor:** Selected badge background color for badge count.
+    -  **BadgeFont:** Badge count font.
+    -  **SelectedBadgeFont:** Selected badge count font.
+    -  **BadgeTextColor:** Badge count text color.
+    -  **SelectedBadgeTextColor:** Selected badge count text color.
+    
+    ```swift
+        JNSegmentedCollectionItemOptions(cornerRadius: 10.0, 
+                backgroundColor: #colorLiteral(red: 0.456212461, green: 0.7545028329, blue: 0.8568375707, alpha: 1),
+                selectedBackgroundColor: #colorLiteral(red: 0.1984777451, green: 0.7956866622, blue: 1, alpha: 1),
+                badgeBackgroundColor: .white, 
+                selectedBadgeBackgroundColor: .white,
+                badgeFont: UIFont.systemFont(ofSize: 16.0), 
+                selectedBadgeFont: UIFont.systemFont(ofSize: 16.0), 
+                badgeTextColor: .gray, selectedBadgeTextColor: .gray)
+    ``` 
+    
 - ***JNSegmented Collection Layout Type:***
     
     The Segmented Control has two types of layout for items:

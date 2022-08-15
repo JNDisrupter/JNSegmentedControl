@@ -40,6 +40,12 @@ class JNSegmentedControlDetailViewController: UIViewController {
     // selected attributes
     var selectedAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0))]
     
+    // Item Options
+    var itemOptions = JNSegmentedCollectionItemOptions()
+    
+    // Badge Counts
+    var badgeCounts: [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,13 +64,25 @@ class JNSegmentedControlDetailViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // listen to changing the status
-        self.segmentedControlView.valueDidChange = { segmentIndex in
-            self.selectedSegmentedStyle.text = "\(segmentIndex)"
+        self.segmentedControlView.didSelectItem = { index in
+            self.selectedSegmentedStyle.text = "\(index)"
         }
     }
     
     // showSegmentedControlView
     func showSegmentedControlView(){
+        
+        // define vertical separator options
+        var verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions(heigthRatio: 0.6, width: 1.0 ,color: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0)))
+        
+        // Content Item Layout Margins
+        var contentItemLayoutMargins = 30.0
+        
+        // Update default attributes
+        self.defaultAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        // Update selected attributes
+        self.selectedAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0))]
         
         // setup segmented collection view
         switch self.segmentedStyle {
@@ -80,16 +98,31 @@ class JNSegmentedControlDetailViewController: UIViewController {
             self.setupImageBeforeLabelSegmentedCollectionView()
         case .imageAfterLabel:
             self.setupImageAfterLabelSegmentedCollectionView()
+        case .textWithBadge:
+            
+            // Set Content Item Layout Margins
+            contentItemLayoutMargins = 0.0
+            
+            // define vertical separator options
+            verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions(heigthRatio: 1.0, width: 8.0 ,color: .clear)
+            
+            // Update default attributes
+            self.defaultAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]
+            
+            // Update selected attributes
+            self.selectedAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]
+            
+            // Setup
+            self.setupTextWithBadgeSegmentedCollectionView()
         }
         
-        // define vertical separator options
-        let verticalSeparatorOptions = JNSegmentedCollectionItemVerticalSeparatorOptions(heigthRatio: 0.6, width: 1.0 ,color: UIColor(red: CGFloat(0), green: CGFloat(118.0/255.0), blue: CGFloat(192/255.0), alpha: CGFloat(1.0)))
+
         
         // define options
-        let options = JNSegmentedCollectionOptions(backgroundColor: .clear, layoutType: JNSegmentedCollectionLayoutType.dynamic, verticalSeparatorOptions: verticalSeparatorOptions, scrollEnabled: true)
+        let options = JNSegmentedCollectionOptions(backgroundColor: .clear, layoutType: JNSegmentedCollectionLayoutType.dynamic, itemOptionType: JNSegmentedCollectionItemOptionType.single(option: self.itemOptions), verticalSeparatorOptions: verticalSeparatorOptions, scrollEnabled: true, contentItemLayoutMargins: contentItemLayoutMargins)
         
         // setup collection view
-        self.segmentedControlView.setup(items: self.attributedStringItems, selectedItems: self.selectedAttributedStringItems, options: options)
+        self.segmentedControlView.setup(items: self.attributedStringItems, selectedItems: self.selectedAttributedStringItems, options: options, badgeCounts: self.badgeCounts)
     }
     
     // MARK: - Build Segmented Styles
@@ -240,7 +273,9 @@ class JNSegmentedControlDetailViewController: UIViewController {
         }
     }
 
-    // setupImageAfterLabelSegmentedCollectionView
+    /**
+     Setup Image After Label Segmented Collection View
+     */
     private func setupImageAfterLabelSegmentedCollectionView(){
 
         // convert strings to attributed string
@@ -275,6 +310,52 @@ class JNSegmentedControlDetailViewController: UIViewController {
             selectedFullString.append(NSAttributedString(attachment: selectedImageAttachment))
             
             self.selectedAttributedStringItems.append(selectedFullString)
+        }
+    }
+    
+    /**
+     Setup Text With Badge Segmented CollectionView
+     */
+    private func setupTextWithBadgeSegmentedCollectionView(){
+  
+        // Item Option
+        self.itemOptions = JNSegmentedCollectionItemOptions(cornerRadius: 10.0, backgroundColor: #colorLiteral(red: 0.456212461, green: 0.7545028329, blue: 0.8568375707, alpha: 1), selectedBackgroundColor: #colorLiteral(red: 0.1984777451, green: 0.7956866622, blue: 1, alpha: 1), badgeBackgroundColor: .white, selectedBadgeBackgroundColor: .white, badgeFont: UIFont.systemFont(ofSize: 16.0), selectedBadgeFont: UIFont.systemFont(ofSize: 16.0), badgeTextColor: .gray, selectedBadgeTextColor: .gray)
+        
+        // convert strings to attributed string
+        for (index, item) in self.textArray.enumerated() {
+            
+            let fullString = NSMutableAttributedString()
+            
+            // Image Width And Height
+            let imageWidthHeight: CGFloat = 25.0
+            
+            // Attachment Y Position
+            let attachmentYPosition =  (UIFont.systemFont(ofSize: 16).capHeight - imageWidthHeight).rounded() / 2
+            
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(named: self.imageArray[index])
+            imageAttachment.bounds = CGRect(origin: CGPoint(x: 0.0, y: attachmentYPosition), size: CGSize(width: imageWidthHeight, height: imageWidthHeight))
+            
+            fullString.append(NSAttributedString(attachment: imageAttachment))
+            fullString.append(NSAttributedString(string: " "))
+            fullString.append(NSAttributedString(string: self.textArray[index], attributes: defaultAttributes))
+            self.attributedStringItems.append(fullString)
+            
+            // Selected Attributed string
+            let selectedFullString = NSMutableAttributedString()
+            
+            let selectedImageAttachment = NSTextAttachment()
+            selectedImageAttachment.image = UIImage(named: self.selectedImageArray[index])
+            selectedImageAttachment.bounds = CGRect(origin: CGPoint(x: 0.0, y: attachmentYPosition), size: CGSize(width: imageWidthHeight, height: imageWidthHeight))
+            
+            selectedFullString.append(NSAttributedString(attachment: selectedImageAttachment))
+            selectedFullString.append(NSAttributedString(string: "  "))
+            selectedFullString.append(NSAttributedString(string: item, attributes: selectedAttributes))
+            
+            self.selectedAttributedStringItems.append(selectedFullString)
+            
+            // Set Badge Counts
+            self.badgeCounts.append(index * 2 + 10)
         }
     }
 }
