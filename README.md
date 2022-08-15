@@ -12,7 +12,7 @@
 
 ## Preview
 
-<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/>
+<img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/BadgeCount.gif" width="280"/>
 
 ## Requirements:
 
@@ -134,10 +134,10 @@ import JNSegmentedControl
     
 - ***JNSegmented Collection Item Options:***
 
-    The Segmented Control has the ability to show separator line between items, that has the following settings:
+    The Segmented Control has the ability to configure each item, that has the following settings:
 
     -  **CornerRadius:**  Corner radius for container view.
-    -  **backgroundColor:** Background color for container view.
+    -  **BackgroundColor:** Background color for container view.
     -  **SelectedBackgroundColor:** Selected background color for container view.
     -  **BadgeBackgroundColor:** Badge background color for badge count.
     -  **SelectedBadgeBackgroundColor:** Selected badge background color for badge count.
