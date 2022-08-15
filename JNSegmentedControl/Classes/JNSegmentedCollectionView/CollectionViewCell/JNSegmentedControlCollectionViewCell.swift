@@ -12,10 +12,14 @@ import UIKit
 private struct ComponentValues {
     static let badgeCountLabelMargins: CGFloat                  = 2.0
     static let badgeCountLabelContainerViewTrailing: CGFloat    = 5.0
+    static let badgeCountLabelContainerViewLeading: CGFloat     = 2.0
 }
 
 /// JN Segmented Control Collection View Cell
 class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
+    
+    /// Container View
+    @IBOutlet private weak var containerView: UIView!
     
     /// Title Label Container View
     @IBOutlet private weak var titleLabelContainerView: UIView!
@@ -31,6 +35,9 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     
     /// Badge Count Label Container View Trailing Constraint
     @IBOutlet private weak var badgeCountLabelContainerViewTrailingConstraint: NSLayoutConstraint!
+    
+    /// Badge Count Label Container View Leading Constraint
+    @IBOutlet private weak var badgeCountLabelContainerViewLeadingConstraint: NSLayoutConstraint!
     
     /// Badge Count Label Top Constraint
     @IBOutlet private weak var badgeCountLabelTopConstraint: NSLayoutConstraint!
@@ -63,7 +70,10 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         
         // Round
         self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.frame.size.width/2
-        self.titleLabelContainerView.layer.cornerRadius = self.titleLabelContainerView.layer.cornerRadius
+        self.badgeCountContainerView.clipsToBounds = true
+        
+        self.containerView.layer.cornerRadius = self.containerView.layer.cornerRadius
+        self.containerView.clipsToBounds = true
     }
     
     /**
@@ -81,7 +91,8 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         self.titleLabel.adjustsFontSizeToFitWidth = true
         
         // Set background colors
-        self.titleLabelContainerView.backgroundColor = representable.titleLabelContainerViewBackgroundColor
+        self.titleLabelContainerView.backgroundColor = representable.containerViewBackgroundColor
+        self.containerView.backgroundColor = representable.containerViewBackgroundColor
         self.badgeCountContainerView.backgroundColor = representable.badgeContainerViewBackgroundColor
         
         // Get badge count
@@ -96,6 +107,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
             self.badgeCountLabelLeadingConstraint.constant = ComponentValues.badgeCountLabelMargins
             self.badgeCountLabelTrailingConstraint.constant = ComponentValues.badgeCountLabelMargins
             self.badgeCountLabelContainerViewTrailingConstraint.constant = ComponentValues.badgeCountLabelContainerViewTrailing
+            self.badgeCountLabelContainerViewLeadingConstraint.constant = ComponentValues.badgeCountLabelContainerViewLeading
         }
         else {
             
@@ -108,17 +120,15 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
             self.badgeCountLabelBottomConstraint.constant = 0
             self.badgeCountLabelLeadingConstraint.constant = 0
             self.badgeCountLabelTrailingConstraint.constant = 0
+            self.badgeCountLabelContainerViewLeadingConstraint.constant = 0
         }
         
         // Layout
         self.layoutIfNeeded()
         
         // Clips to bounds
-        
         self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.frame.size.width/2
-        
-        
-        self.titleLabelContainerView.layer.cornerRadius = representable.titleLabelContainerViewCornerRadius
+        self.containerView.layer.cornerRadius = representable.containerViewCornerRadius
     }
     
     // MARK: - Class methods
@@ -147,7 +157,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
      */
     class func calculateCellWidth(with attributedString: NSAttributedString, badgeAttributedString: NSAttributedString?, collectionViewHeight: CGFloat) -> CGFloat {
         var width = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
-        
+      
         // Calculate badge
         if let badgeAttributedString = badgeAttributedString {
             let maxWidthAttributedString = NSAttributedString(string: "+99", attributes: badgeAttributedString.attributes(at: 0, effectiveRange: nil))

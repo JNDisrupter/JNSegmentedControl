@@ -269,16 +269,16 @@ public class JNSegmentedCollectionView: UIView {
             }
             
             // add representables
-            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.badgeTextColor))
+            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.badgeTextColor))
             
             // add selected representables
-            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, titleLabelContainerViewCornerRadius: itemOption.cornerRadius, titleLabelContainerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.selectedBadgeTextColor))
+            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.selectedBadgeTextColor))
             
             if case JNSegmentedCollectionLayoutType.dynamic = self.options.layoutType {
                 
-                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: self.items[index], badgeAttributedString: self.segmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: attrString, badgeAttributedString: self.segmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
                 
-                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedItem, badgeAttributedString: self.selectedSegmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedAttrString, badgeAttributedString: self.selectedSegmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
                 
                 // Update Total Cells Width
                 totalCellsWidth += cellWidth
