@@ -391,8 +391,8 @@ public class JNSegmentedCollectionView: UIView {
             }
         }
         
-        // Add margins
-        maxmimumWidth += 4
+        // Add margins from the label
+        maxmimumWidth += 4.0
         return ceil(maxmimumWidth)
     }
     
