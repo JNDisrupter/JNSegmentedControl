@@ -38,6 +38,8 @@ class JNSegmentedControlCollectionViewCellRepresentable {
     /// Badge attributed string
     private(set) var badgeAttributedString: NSAttributedString?
     
+    /// Badge container view width
+    private(set) var badgeContainerViewWidth: CGFloat
     /**
      Initializer
      */
@@ -53,12 +55,13 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.containerViewBackgroundColor = .clear
         self.badgeContainerViewBackgroundColor = .clear
         self.badgeAttributedString = nil
+        self.badgeContainerViewWidth = 0.0
     }
     
     /**
      Initialize
      */
-    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, containerViewCornerRadius: CGFloat, containerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?, badgeTextColor: UIColor) {
+    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, containerViewCornerRadius: CGFloat, containerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?, badgeTextColor: UIColor, badgeContainerViewWidth: CGFloat) {
         self.init()
         
         // build representable
@@ -82,6 +85,7 @@ class JNSegmentedControlCollectionViewCellRepresentable {
             }
             
             self.badgeAttributedString = NSAttributedString(string: badgeCountString, attributes: [NSAttributedString.Key.font: badgeFont, NSAttributedString.Key.foregroundColor: badgeTextColor])
+            self.badgeContainerViewWidth = badgeContainerViewWidth
         }
     }
     

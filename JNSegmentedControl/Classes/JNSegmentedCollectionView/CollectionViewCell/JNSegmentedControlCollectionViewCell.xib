@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PBr-Z2-jYD">
                                 <rect key="frame" x="194" y="29" width="4" height="4"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hla-gx-ahU">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="752" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hla-gx-ahU">
                                         <rect key="frame" x="2" y="2" width="0.0" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -37,15 +37,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Hla-gx-ahU" firstAttribute="leading" secondItem="PBr-Z2-jYD" secondAttribute="leading" constant="2" id="6tM-9b-ZLv"/>
+                                    <constraint firstAttribute="width" secondItem="PBr-Z2-jYD" secondAttribute="height" multiplier="1:1" id="DzH-KU-w4E"/>
                                     <constraint firstItem="Hla-gx-ahU" firstAttribute="top" secondItem="PBr-Z2-jYD" secondAttribute="top" constant="2" id="Imf-eX-GjM"/>
                                     <constraint firstAttribute="bottom" secondItem="Hla-gx-ahU" secondAttribute="bottom" constant="2" id="Mwq-hj-6cT"/>
+                                    <constraint firstAttribute="width" constant="4" id="exK-f4-YNC"/>
                                     <constraint firstAttribute="trailing" secondItem="Hla-gx-ahU" secondAttribute="trailing" constant="2" id="yt8-zg-NjT"/>
                                 </constraints>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="A1g-Sv-Or2">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="A1g-Sv-Or2">
                                 <rect key="frame" x="0.0" y="0.0" width="192" height="62"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-yt-cv9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-yt-cv9">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="62"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -85,6 +87,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="badgeCountContainerView" destination="PBr-Z2-jYD" id="aGq-nY-Dt7"/>
+                <outlet property="badgeCountContainerViewWidth" destination="exK-f4-YNC" id="254-VF-dyc"/>
                 <outlet property="badgeCountLabel" destination="Hla-gx-ahU" id="FO8-3m-PUT"/>
                 <outlet property="badgeCountLabelBottomConstraint" destination="Mwq-hj-6cT" id="34P-Xg-64W"/>
                 <outlet property="badgeCountLabelContainerViewLeadingConstraint" destination="bpd-xy-Dtm" id="mKA-5J-m8z"/>

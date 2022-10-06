@@ -100,7 +100,7 @@ public class JNSegmentedCollectionView: UIView {
         layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-
+        
         // Init collection view
         self.collectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         
@@ -183,6 +183,9 @@ public class JNSegmentedCollectionView: UIView {
         // Selected Cell Size
         var selectedCellSize: CGSize = CGSize.zero
         
+        // Max badge container view width
+        let maxBadgeContainerViewWidth = self.calculateMaximumBadgeContainerViewWidth()
+        
         // Calculate cell size For Fixed Layout Type
         if case let JNSegmentedCollectionLayoutType.fixed(maxVisibleItems) = self.options.layoutType {
             let cellWidthForFixedLayoutType = self.getCellWidthForFixedLayoutType(maxVisibleItems: maxVisibleItems)
@@ -193,8 +196,7 @@ public class JNSegmentedCollectionView: UIView {
             // Update
             selectedCellSize = cellSize
         }
-
-
+        
         // Total Cells Width
         var totalCellsWidth: CGFloat = 0.0
         
@@ -251,7 +253,7 @@ public class JNSegmentedCollectionView: UIView {
                 style.alignment = NSTextAlignment.center
                 selectedAttrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSRange(location: 0, length: selectedAttrString.length))
             }
-
+            
             // Badge count
             var badgeCount: Int?
             
@@ -269,23 +271,23 @@ public class JNSegmentedCollectionView: UIView {
             }
             
             // add representables
-            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.badgeTextColor))
+            self.segmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: attrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: cellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.backgroundColor, badgeContainerViewBackgroundColor: itemOption.badgeBackgroundColor, badgeFont: itemOption.badgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.badgeTextColor, badgeContainerViewWidth: maxBadgeContainerViewWidth))
             
             // add selected representables
-            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.selectedBadgeTextColor))
+            self.selectedSegmentedItems.append(JNSegmentedControlCollectionViewCellRepresentable(attributedString: selectedAttrString, options: self.options, isLastItem: isLastItem, isSelected: isSelected, cellSize: selectedCellSize, containerViewCornerRadius: itemOption.cornerRadius, containerViewBackgroundColor: itemOption.selectedBackgroundColor, badgeContainerViewBackgroundColor: itemOption.selectedBadgeBackgroundColor, badgeFont: itemOption.selectedBadgeFont, badgeCount: badgeCount, badgeTextColor: itemOption.selectedBadgeTextColor, badgeContainerViewWidth: maxBadgeContainerViewWidth))
             
             if case JNSegmentedCollectionLayoutType.dynamic = self.options.layoutType {
                 
-                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: attrString, badgeAttributedString: self.segmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                let cellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: attrString, badgeAttributedString: self.segmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0, maxBadgeContainerViewWidth: maxBadgeContainerViewWidth) + itemLayoutMargin
                 
-                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedAttrString, badgeAttributedString: self.selectedSegmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0) + itemLayoutMargin
+                let selectedCellWidth = JNSegmentedControlCollectionViewCell.calculateCellWidth(with: selectedAttrString, badgeAttributedString: self.selectedSegmentedItems.last?.badgeAttributedString, collectionViewHeight: self.collectionView?.frame.size.height ?? 0.0, maxBadgeContainerViewWidth: maxBadgeContainerViewWidth) + itemLayoutMargin
                 
                 // Update Total Cells Width
                 totalCellsWidth += cellWidth
                 
                 // Add Separator width
                 if index > 0 {
-                   totalCellsWidth += separatorWidth
+                    totalCellsWidth += separatorWidth
                 }
                 
                 // Update Cell Size
@@ -314,6 +316,84 @@ public class JNSegmentedCollectionView: UIView {
                 item.updateCellSize(cellSize)
             }
         }
+    }
+    
+    /**
+     Calculate maximum Badge Container view width
+     - Returns: Maximum width in CGFloat
+     */
+    private func calculateMaximumBadgeContainerViewWidth() -> CGFloat {
+        
+        // Remove nil values from array as they don't count in calculation
+        let badgesCount: [Int] = self.badgeCounts.compactMap {$0}
+        
+        // Check if badge counts is not empty
+        guard !badgeCounts.isEmpty else {
+            return 0.0
+        }
+        
+        // Maximum width
+        var maxmimumWidth: CGFloat = 0.0
+        
+        // Check the options type
+        switch self.options.itemOptionType {
+        case .single(let option):
+            
+            // Sort badges to get maximum one
+            let badges = badgesCount.sorted{$0  > $1}
+            var badgeString = ""
+            
+            // Get maximum number in badges count
+            if let maximumNumInBadgesCount = badges.first {
+                badgeString =  maximumNumInBadgesCount > 99 ? "+99" : maximumNumInBadgesCount.description
+            }
+            
+            // Get width with default attributes
+            let defaultAttributedString = NSAttributedString(string: badgeString, attributes: [NSAttributedString.Key.font: option.badgeFont])
+            
+            let defaultAttributedStringWidth = defaultAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            
+            // Get width with selected attributes
+            let selectedAttributedString = NSAttributedString(string: badgeString, attributes: [NSAttributedString.Key.font: option.selectedBadgeFont])
+            
+            let selectedAttributedStringWidth = selectedAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            
+            // Get the maximum width from selected and unselected
+            maxmimumWidth = max(selectedAttributedStringWidth, defaultAttributedStringWidth)
+            
+        case .multiple(let options):
+            
+            // Loop through items
+            for index in 0 ..< self.items.count {
+                
+                // Check for indexes and get badge count of the index
+                if index < self.badgeCounts.count, let badgeCount = self.badgeCounts[index], index < options.count {
+                    let string = badgeCount.description
+                    let option = options[index]
+                    
+                    // Get default attributed string width
+                    let defaultAttributedString = NSAttributedString(string: string, attributes: [NSAttributedString.Key.font: option.badgeFont])
+                    let defaultAttributedStringWidth = defaultAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+                    
+                    
+                    // Get selected attributed string width
+                    let selectedAttributedString = NSAttributedString(string: string, attributes: [NSAttributedString.Key.font: option.selectedBadgeFont])
+                    let selectedAttributedStringWidth = selectedAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+                    
+                    // Get max
+                    let itemMaxWidth = max(selectedAttributedStringWidth, defaultAttributedStringWidth)
+                    
+                    // Compare it to current maximum
+                    if itemMaxWidth > maxmimumWidth {
+                        maxmimumWidth = itemMaxWidth
+                    }
+                }
+            }
+        }
+        
+        // Add margins
+        maxmimumWidth += 4
+        return ceil(maxmimumWidth)
     }
     
     /**

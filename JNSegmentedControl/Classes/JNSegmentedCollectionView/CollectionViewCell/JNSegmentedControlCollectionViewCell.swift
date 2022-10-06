@@ -39,6 +39,9 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     /// Badge Count Label Container View Leading Constraint
     @IBOutlet private weak var badgeCountLabelContainerViewLeadingConstraint: NSLayoutConstraint!
     
+    /// Badge Count Container View Width
+    @IBOutlet private weak var badgeCountContainerViewWidth: NSLayoutConstraint!
+    
     /// Badge Count Label Top Constraint
     @IBOutlet private weak var badgeCountLabelTopConstraint: NSLayoutConstraint!
     
@@ -50,6 +53,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     
     /// Badge Count Label Trailing Constraint
     @IBOutlet private weak var badgeCountLabelTrailingConstraint: NSLayoutConstraint!
+    
     
     /**
      Awake From Nib
@@ -82,12 +86,12 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
      */
     func setup(with representable: JNSegmentedControlCollectionViewCellRepresentable) {
         
-        // set title number of lines
+         // Set title number of lines
         self.titleLabel.numberOfLines = 0
         
         // Set title label
         self.titleLabel.attributedText = representable.attributedString
-        self.titleLabel.minimumScaleFactor = 0.3
+        self.titleLabel.minimumScaleFactor = 0.5
         self.titleLabel.adjustsFontSizeToFitWidth = true
         
         // Set background colors
@@ -108,12 +112,12 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
             self.badgeCountLabelTrailingConstraint.constant = ComponentValues.badgeCountLabelMargins
             self.badgeCountLabelContainerViewTrailingConstraint.constant = ComponentValues.badgeCountLabelContainerViewTrailing
             self.badgeCountLabelContainerViewLeadingConstraint.constant = ComponentValues.badgeCountLabelContainerViewLeading
+            self.badgeCountContainerViewWidth.constant = representable.badgeContainerViewWidth
         }
         else {
             
             // Remove the text
             self.badgeCountLabel.text = nil
-            
             // Set constraints to zero
             self.badgeCountLabelContainerViewTrailingConstraint.constant = 0
             self.badgeCountLabelTopConstraint.constant = 0
@@ -121,6 +125,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
             self.badgeCountLabelLeadingConstraint.constant = 0
             self.badgeCountLabelTrailingConstraint.constant = 0
             self.badgeCountLabelContainerViewLeadingConstraint.constant = 0
+            self.badgeCountContainerViewWidth.constant = 0
         }
         
         // Layout
@@ -155,17 +160,16 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
      - Parameter attributedString: Attributed String.
      - Returns: the calculated width, CGFloat value.
      */
-    class func calculateCellWidth(with attributedString: NSAttributedString, badgeAttributedString: NSAttributedString?, collectionViewHeight: CGFloat) -> CGFloat {
+    class func calculateCellWidth(with attributedString: NSAttributedString, badgeAttributedString: NSAttributedString?, collectionViewHeight: CGFloat, maxBadgeContainerViewWidth: CGFloat) -> CGFloat {
         var width = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
-      
+
         // Calculate badge
-        if let badgeAttributedString = badgeAttributedString {
-            let maxWidthAttributedString = NSAttributedString(string: "+99", attributes: badgeAttributedString.attributes(at: 0, effectiveRange: nil))
-            
+        if badgeAttributedString != nil {
+
             // Calculate the max for the badge
-            width += maxWidthAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: collectionViewHeight), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
-            width += ComponentValues.badgeCountLabelMargins*2
+            width += maxBadgeContainerViewWidth
             width += ComponentValues.badgeCountLabelContainerViewTrailing
+            width += ComponentValues.badgeCountLabelContainerViewLeading
         }
         return ceil(width)
     }
