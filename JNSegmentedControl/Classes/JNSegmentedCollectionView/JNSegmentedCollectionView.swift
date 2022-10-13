@@ -392,7 +392,7 @@ public class JNSegmentedCollectionView: UIView {
         }
         
         // Add margins from the label
-        maxmimumWidth += 4.0
+        maxmimumWidth += JNSegmentedControlCollectionViewCell.getBadgeCountLabelMargins() * 2
         return ceil(maxmimumWidth)
     }
     

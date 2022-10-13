@@ -12,7 +12,7 @@ import UIKit
 private struct ComponentValues {
     static let badgeCountLabelMargins: CGFloat                  = 2.0
     static let badgeCountLabelContainerViewTrailing: CGFloat    = 5.0
-    static let badgeCountLabelContainerViewLeading: CGFloat     = 2.0
+    static let badgeCountLabelContainerViewLeading: CGFloat     = 5.0
 }
 
 /// JN Segmented Control Collection View Cell
@@ -158,6 +158,8 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
     /**
      Calculate Cell Width
      - Parameter attributedString: Attributed String.
+     - Parameter badgeAttributedString: Badge Attributed String
+     - Parameter maxBadgeContainerViewWidth: Max Badge Container View Width
      - Returns: the calculated width, CGFloat value.
      */
     class func calculateCellWidth(with attributedString: NSAttributedString, badgeAttributedString: NSAttributedString?, collectionViewHeight: CGFloat, maxBadgeContainerViewWidth: CGFloat) -> CGFloat {
@@ -172,5 +174,13 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
             width += ComponentValues.badgeCountLabelContainerViewLeading
         }
         return ceil(width)
+    }
+    
+    /**
+     Get Badge Count Labe lMargins
+     - Returns: CGFloat value.
+     */
+    class func getBadgeCountLabelMargins() -> CGFloat {
+        return ComponentValues.badgeCountLabelMargins
     }
 }
