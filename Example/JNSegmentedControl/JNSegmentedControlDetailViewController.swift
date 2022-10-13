@@ -337,7 +337,7 @@ class JNSegmentedControlDetailViewController: UIViewController {
             imageAttachment.bounds = CGRect(origin: CGPoint(x: 0.0, y: attachmentYPosition), size: CGSize(width: imageWidthHeight, height: imageWidthHeight))
             
             fullString.append(NSAttributedString(attachment: imageAttachment))
-            fullString.append(NSAttributedString(string: " "))
+            fullString.append(NSAttributedString(string: " ", attributes: defaultAttributes))
             fullString.append(NSAttributedString(string: self.textArray[index], attributes: defaultAttributes))
             self.attributedStringItems.append(fullString)
             
@@ -349,7 +349,7 @@ class JNSegmentedControlDetailViewController: UIViewController {
             selectedImageAttachment.bounds = CGRect(origin: CGPoint(x: 0.0, y: attachmentYPosition), size: CGSize(width: imageWidthHeight, height: imageWidthHeight))
             
             selectedFullString.append(NSAttributedString(attachment: selectedImageAttachment))
-            selectedFullString.append(NSAttributedString(string: "  "))
+            selectedFullString.append(NSAttributedString(string: " ", attributes: selectedAttributes))
             selectedFullString.append(NSAttributedString(string: item, attributes: selectedAttributes))
             
             self.selectedAttributedStringItems.append(selectedFullString)
