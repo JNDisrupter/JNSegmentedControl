@@ -352,14 +352,16 @@ public class JNSegmentedCollectionView: UIView {
             let defaultAttributedString = NSAttributedString(string: badgeString, attributes: [NSAttributedString.Key.font: option.badgeFont])
             
             let defaultAttributedStringWidth = defaultAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            let defaultAttributedStringHeight = defaultAttributedString.boundingRect(with: CGSize(width: self.collectionView?.frame.width ?? 0.0 , height: CGFloat.greatestFiniteMagnitude ), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
             
             // Get width with selected attributes
             let selectedAttributedString = NSAttributedString(string: badgeString, attributes: [NSAttributedString.Key.font: option.selectedBadgeFont])
             
             let selectedAttributedStringWidth = selectedAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+            let selectedAttributedStringHeight = selectedAttributedString.boundingRect(with: CGSize(width: self.collectionView?.frame.width ?? 0.0  , height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
             
             // Get the maximum width from selected and unselected
-            maxmimumWidth = max(selectedAttributedStringWidth, defaultAttributedStringWidth)
+            maxmimumWidth = max(max(selectedAttributedStringWidth, selectedAttributedStringHeight), max(defaultAttributedStringWidth, defaultAttributedStringHeight))
             
         case .multiple(let options):
             
@@ -374,14 +376,15 @@ public class JNSegmentedCollectionView: UIView {
                     // Get default attributed string width
                     let defaultAttributedString = NSAttributedString(string: string, attributes: [NSAttributedString.Key.font: option.badgeFont])
                     let defaultAttributedStringWidth = defaultAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
-                    
+                    let defaultAttributedStringHeight = defaultAttributedString.boundingRect(with: CGSize(width: self.collectionView?.frame.width ?? 0.0 , height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
                     
                     // Get selected attributed string width
                     let selectedAttributedString = NSAttributedString(string: string, attributes: [NSAttributedString.Key.font: option.selectedBadgeFont])
                     let selectedAttributedStringWidth = selectedAttributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude , height: self.collectionView?.frame.height ?? 0.0), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).width
+                    let selectedAttributedStringHeight = selectedAttributedString.boundingRect(with: CGSize(width: self.collectionView?.frame.width ?? 0.0 , height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
                     
                     // Get max
-                    let itemMaxWidth = max(selectedAttributedStringWidth, defaultAttributedStringWidth)
+                    let itemMaxWidth = max(max(selectedAttributedStringWidth, selectedAttributedStringHeight), max(defaultAttributedStringWidth, defaultAttributedStringHeight))
                     
                     // Compare it to current maximum
                     if itemMaxWidth > maxmimumWidth {
