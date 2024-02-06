@@ -134,6 +134,15 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
         // Clips to bounds
         self.badgeCountContainerView.layer.cornerRadius = self.badgeCountContainerView.frame.size.width/2
         self.containerView.layer.cornerRadius = representable.containerViewCornerRadius
+        
+        // Add border according to border width
+        if representable.containerViewBorderWidth > 0.0 {
+            self.containerView.layer.borderWidth = representable.containerViewBorderWidth
+            self.containerView.layer.borderColor = representable.containerViewBorderColor.cgColor
+        } else {
+            self.containerView.layer.borderWidth = 0.0
+            self.containerView.layer.borderColor = UIColor.clear.cgColor
+        }
     }
     
     // MARK: - Class methods

@@ -43,6 +43,15 @@ public struct JNSegmentedCollectionItemOptions {
     /// Selected badge text color
     var selectedBadgeTextColor: UIColor
     
+    /// Border width
+    var borderWidth: CGFloat
+    
+    /// Border color
+    var borderColor: UIColor
+    
+    /// Selected border color
+    var selectedBorderColor: UIColor
+    
     /**
      Initializer
      */
@@ -58,6 +67,9 @@ public struct JNSegmentedCollectionItemOptions {
         self.selectedBadgeFont = UIFont.systemFont(ofSize: 12)
         self.badgeTextColor = .black
         self.selectedBadgeTextColor = .black
+        self.borderWidth = 0.0
+        self.borderColor = .clear
+        self.selectedBorderColor = .clear
     }
     
     /**
@@ -71,8 +83,11 @@ public struct JNSegmentedCollectionItemOptions {
      - Parameter selectedBadgeFont: Selected state font
      - Parameter badgeTextColor: Badge text color
      - Parameter selectedBadgeTextColor: Selected badge text color
+     - Parameter borderWidth: Border width to the container view
+     - Parameter borderColor: Normal state border color
+     - Parameter selectedBorderColor: Selected state border color
      */
-    public init(cornerRadius: CGFloat, backgroundColor: UIColor, selectedBackgroundColor: UIColor, badgeBackgroundColor: UIColor, selectedBadgeBackgroundColor: UIColor, badgeFont: UIFont, selectedBadgeFont: UIFont, badgeTextColor: UIColor, selectedBadgeTextColor: UIColor) {
+    public init(cornerRadius: CGFloat, backgroundColor: UIColor, selectedBackgroundColor: UIColor, badgeBackgroundColor: UIColor, selectedBadgeBackgroundColor: UIColor, badgeFont: UIFont, selectedBadgeFont: UIFont, badgeTextColor: UIColor, selectedBadgeTextColor: UIColor, borderWidth: CGFloat = 0.0, borderColor: UIColor = .clear, selectedBorderColor: UIColor = .clear) {
         
         // Set values
         self.cornerRadius = cornerRadius
@@ -84,5 +99,8 @@ public struct JNSegmentedCollectionItemOptions {
         self.selectedBadgeFont = selectedBadgeFont
         self.badgeTextColor = badgeTextColor
         self.selectedBadgeTextColor = selectedBadgeTextColor
+        self.borderWidth = borderWidth
+        self.borderColor = borderColor
+        self.selectedBorderColor = selectedBorderColor
     }
 }
