@@ -16,19 +16,14 @@
 
 ## Requirements:
 
-- Xcode 9
-- iOS 9.0+
-- Swift 4.2+
+- Xcode 15.3
+- iOS 12.0+
+- Swift 5.10+
 
 
 ## Installation
 
-JNSegmentedControl is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```swift
-pod 'JNSegmentedControl'
-```
+JNSegmentedControl supports SwiftPM. To use SwiftPM, you should use Xcode 15.3 to open your project. Click File -> Swift Packages -> Add Package Dependency, enter [JNAvatarWithInitials repo's URL](https://github.com/JNDisrupter/JNSegmentedControl).
 
 ## Usage:
 

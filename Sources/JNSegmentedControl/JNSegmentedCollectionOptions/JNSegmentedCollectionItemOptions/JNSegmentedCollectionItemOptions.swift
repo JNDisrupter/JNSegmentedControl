@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// JN Segmented Collection Item Option Type
 public enum JNSegmentedCollectionItemOptionType {

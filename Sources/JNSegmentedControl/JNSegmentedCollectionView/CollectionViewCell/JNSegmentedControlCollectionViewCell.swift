@@ -152,7 +152,7 @@ class JNSegmentedControlCollectionViewCell: UICollectionViewCell {
      */
     class func registerCell(collectionView:UICollectionView) {
         
-        collectionView.register(UINib(nibName: "JNSegmentedControlCollectionViewCell", bundle: Bundle(for: JNSegmentedControlCollectionViewCell.self)), forCellWithReuseIdentifier: JNSegmentedControlCollectionViewCell.getReuseIdentifier())
+        collectionView.register(UINib(nibName: "JNSegmentedControlCollectionViewCell", bundle: Bundle.module), forCellWithReuseIdentifier: JNSegmentedControlCollectionViewCell.getReuseIdentifier())
     }
     
     /**
