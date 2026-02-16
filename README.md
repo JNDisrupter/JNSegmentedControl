@@ -23,7 +23,7 @@
 
 ## Installation
 
-JNSegmentedControl supports SwiftPM. To use SwiftPM, you should use Xcode 15.3 to open your project. Click File -> Swift Packages -> Add Package Dependency, enter [JNAvatarWithInitials repo's URL](https://github.com/JNDisrupter/JNSegmentedControl).
+JNSegmentedControl supports SwiftPM. To use SwiftPM, you should use Xcode 15.3 to open your project. Click File -> Swift Packages -> Add Package Dependency, enter [JNSegmentedControl repo's URL](https://github.com/JNDisrupter/JNSegmentedControl.git).
 
 ## Usage:
 
