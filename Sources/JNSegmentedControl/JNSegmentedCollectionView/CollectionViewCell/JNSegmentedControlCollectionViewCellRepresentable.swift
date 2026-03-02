@@ -40,6 +40,13 @@ class JNSegmentedControlCollectionViewCellRepresentable {
     
     /// Badge container view width
     private(set) var badgeContainerViewWidth: CGFloat
+    
+    /// Container view border width
+    private(set) var containerViewBorderWidth: CGFloat
+    
+    /// Container view border color
+    private(set) var containerViewBorderColor: UIColor
+    
     /**
      Initializer
      */
@@ -56,12 +63,14 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.badgeContainerViewBackgroundColor = .clear
         self.badgeAttributedString = nil
         self.badgeContainerViewWidth = 0.0
+        self.containerViewBorderWidth = 0.0
+        self.containerViewBorderColor = .clear
     }
     
     /**
      Initialize
      */
-    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, containerViewCornerRadius: CGFloat, containerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?, badgeTextColor: UIColor, badgeContainerViewWidth: CGFloat) {
+    convenience init(attributedString: NSAttributedString, options: JNSegmentedCollectionOptions, isLastItem: Bool = false, isSelected: Bool = false, cellSize: CGSize = CGSize.zero, containerViewCornerRadius: CGFloat, containerViewBackgroundColor: UIColor, badgeContainerViewBackgroundColor: UIColor, badgeFont: UIFont, badgeCount: Int?, badgeTextColor: UIColor, badgeContainerViewWidth: CGFloat, containerViewBorderWidth: CGFloat, containerViewBorderColor: UIColor) {
         self.init()
         
         // build representable
@@ -73,6 +82,8 @@ class JNSegmentedControlCollectionViewCellRepresentable {
         self.containerViewCornerRadius = containerViewCornerRadius
         self.containerViewBackgroundColor = containerViewBackgroundColor
         self.badgeContainerViewBackgroundColor = badgeContainerViewBackgroundColor
+        self.containerViewBorderWidth = containerViewBorderWidth
+        self.containerViewBorderColor = containerViewBorderColor
         
         // set badge count
         if let badgeCount = badgeCount {

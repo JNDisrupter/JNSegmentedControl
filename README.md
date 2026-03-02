@@ -1,7 +1,6 @@
 # JNSegmentedControl
 
 [![CI Status](https://img.shields.io/travis/ihmouda/JNSegmentedControl.svg?style=flat)](https://travis-ci.org/JNDisrupter/JNSegmentedControl)
-[![Version](https://img.shields.io/cocoapods/v/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
 [![License](https://img.shields.io/cocoapods/l/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
 [![Platform](https://img.shields.io/cocoapods/p/JNSegmentedControl.svg?style=flat)](https://cocoapods.org/pods/JNSegmentedControl)
 
@@ -14,21 +13,16 @@
 
 <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/TextOnly.gif" width="280"/>  <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageOnly.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageUnderLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/LabelUnderImage.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/ImageBeforeLabel.gif" width="280"/> <img src="https://github.com/JNDisrupter/JNSegmentedControl/raw/master/Images/BadgeCount.gif" width="280"/>
 
-## Requirements:
+## Requirements
 
-- Xcode 9
-- iOS 9.0+
-- Swift 4.2+
+- iOS 12.0+ / macOS 15.7+
+- Xcode 26+
+- Swift 5.10+
 
 
-## Installation
+## Installation with Swift Package Manager
 
-JNSegmentedControl is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```swift
-pod 'JNSegmentedControl'
-```
+JNSegmentedControl supports SwiftPM. To use SwiftPM, you should use Xcode 26 to open your project. Click File -> Swift Packages -> Add Package Dependency, enter [JNSegmentedControl repo's URL](https://github.com/JNDisrupter/JNSegmentedControl.git).
 
 ## Usage:
 
@@ -185,11 +179,6 @@ import JNSegmentedControl
             color: UIColor.blue
         )
     ```
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 
 ## Author
 
